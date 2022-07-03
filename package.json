@@ -1,7 +1,7 @@
 {
   "name": "tryhard-but-slowrun-back",
-  "version": "0.0.1",
-  "description": "Actuellement en version 0.0.1",
+  "version": "0.1.1",
+  "description": "Projet TryHard but SlowRun par Alexandre Richard. Projet à but auto-formatif.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
