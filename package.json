@@ -1,0 +1,21 @@
+{
+  "name": "tryhard-but-slowrun-back",
+  "version": "0.0.1",
+  "description": "Actuellement en version 0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alexandre-RICHARD/tryhard-but-slowrun-back.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1"
+  }
+}
