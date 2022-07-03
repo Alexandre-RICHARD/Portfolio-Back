@@ -1,3 +1,3 @@
-require('dotenv').config();
-const server = require('./app/server');
+require("dotenv").config();
+const server = require("./app/server");
 server.start();

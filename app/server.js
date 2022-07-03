@@ -1,7 +1,8 @@
-const express = require('express');
+require("dotenv").config();
+const express = require("express");
 const PORT = process.env.PORT;
-const router = require('./router');
-const cors = require('cors')
+const router = require("./router");
+const cors = require("cors");
 const app = express();
 
 app.use(cors());
@@ -12,7 +13,7 @@ const start = () => {
   app.listen(PORT, () => {
     console.log(`Notre serveur fonctionne bien sur le port ${PORT}.`);
   });
-}
+};
 
 module.exports = {
   start
