@@ -1,5 +1,28 @@
 # TryHard but SlowRun - Le back
 
+## Installation (classique) :
+
+<details>
+<summary>Développer</summary>
+
+  **1 : Création de la BDD** 
+  - `sudo -i -u postgres;` sur Ubuntu ou  `psql -U postgres` sur Windows
+  - `CREATE ROLE chess WITH LOGIN PASSWORD 'chess';`
+  - `CREATE DATABASE chess OWNER chess;`
+    
+  **2 : Sur un autre terminal**
+  - `psql -U chess -d chess -f ./data/create_db.sql;'
+  -  MDP `chess`
+
+  **3 : Créer le .env**
+  - À l'intérieur du .env, mettre : 
+  - `PG_URL=postgresql://chess:chess@localhost:5432/chess`
+  - `PORT=3000`
+
+Et voilà 
+
+</details>
+
 ## Historique des version
 0.0.1 - Création des répertoire Github
 0.1.0 - Mise en place des premiers fichiers, test ok, prêt à coder
@@ -7,3 +30,4 @@
 0.2.0 - Commit pour un léger changement dans le Readme et pour suivre l'update front
 0.2.1 - Petit patch, ajout d'Eslint sur le back et correction nécessaire
 0.3.0 - Début du projet, fin de la construction du plateau d'échecs terminé. Tout est en javascript commun. Côté back : rien à part l'ajout de commande dans le package.json
+0.4.0 - Mise en place de la base de données sans Sequelize. GEstion de la 1ère route getBoardData avec commande SQL simple. Envoi des données au front.

@@ -1,5 +1,4 @@
 const mainController = {
-  
   test: async (req, res) => {
     try {
       res.json("Le test fonctionne");
@@ -8,7 +7,6 @@ const mainController = {
       res.status(500).json(error);
     }
   },
-  
 };
   
 module.exports = mainController;
