@@ -6,6 +6,8 @@ const chessController = require("./controllers/chessController");
 const router = Router();
 
 router.get("/board/data", chessController.getBoardData);
+router.get("/moves/data", chessController.getCurrentMovesData);
+router.get("/board/reset", chessController.resetBoardData);
 router.get("/test", mainController.test);
 
 router.use((req, res) => {

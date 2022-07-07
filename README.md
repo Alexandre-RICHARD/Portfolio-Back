@@ -31,3 +31,4 @@ Et voilà
 0.2.1 - Petit patch, ajout d'Eslint sur le back et correction nécessaire
 0.3.0 - Début du projet, fin de la construction du plateau d'échecs terminé. Tout est en javascript commun. Côté back : rien à part l'ajout de commande dans le package.json
 0.4.0 - Mise en place de la base de données sans Sequelize. GEstion de la 1ère route getBoardData avec commande SQL simple. Envoi des données au front.
+0.5.0 - Les pièces sont correctement placées sur le plateau d'échecs, début de lien pour récupérer les données en back pour les mouvements. GetBoardData changé et ajout du resetData

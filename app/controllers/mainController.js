@@ -3,8 +3,8 @@ const mainController = {
     try {
       res.json("Le test fonctionne");
     } catch (error) {
-      console.trace(error);
       res.status(500).json(error);
+      console.trace(error);
     }
   },
 };
