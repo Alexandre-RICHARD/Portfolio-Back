@@ -1,12 +1,12 @@
 {
   "name": "tryhard-but-slowrun-back",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Projet TryHard but SlowRun par Alexandre Richard. Projet à but auto-formatif.",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint src/**/*.js",
-    "lint:fix": "eslint --fix src/**/*.js",
-    "clean": "rd /s /q node_modules"
+    "lint": "eslint ./*.js",
+    "lint:fix": "eslint --fix ./*.js",
+    "clean": "rd /s /q node_modules & del /s /q package-lock.json"
   },
   "repository": {
     "type": "git",
