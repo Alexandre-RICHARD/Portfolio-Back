@@ -1,16 +1,12 @@
-const { Router } = require("express");
-
-const mainController = require("./controllers/mainController");
+const {
+  Router
+} = require("express");
+const router = Router();
 const chessController = require("./controllers/chessController");
 
-const router = Router();
-
-router.get("/board/data", chessController.getBoardData);
-router.get("/board/reset", chessController.resetBoardData);
-router.get("/moves/data", chessController.getCurrentMovesData);
-router.get("/game/data", chessController.getGameData);
-router.post("/move/verif", chessController.moveVerification);
-router.get("/test", mainController.test);
+router.get("/chess/game/data", chessController.getChessGameData);
+router.get("/chess/board/reset", chessController.resetBoardData);
+router.post("/chess/move/verif", chessController.moveVerification);
 
 router.use((req, res) => {
   res.status(404).json("Erreur 404. Pas p'ssible hein");

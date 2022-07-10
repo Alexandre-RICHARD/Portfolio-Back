@@ -4,54 +4,42 @@ const saveMove = require("../middlewares/saveMove");
 
 const chessController = {
 
-  boardData: [],
-  currentColorMovesData: [],
   gameData: {
+    boardData: [],
+    currentColorMovesData: [],
+    cimetary: [],
     currentPlayerColor: "white",
     opponentColor: "black",
   },
 
-  getBoardData: (req, res) => {
-    if (Object.keys(chessController.boardData).length !== 0) {
-      res.json(chessController.boardData);
+  getChessGameData: async (req, res) => {
+    if (Object.keys(chessController.gameData.boardData).length !== 0) {
+      chessController.gameData.currentColorMovesData = await currentMovesHandler.getCurrentMovesData(chessController.gameData);
+      res.json(chessController.gameData);
     } else {
-      res.json("L'objet boardData est vide");
+      res.json("L'objet gameData est vide");
     }
   },
 
   resetBoardData: async (req, res) => {
     try {
       const boardData = await chessGame.getAllBoardData();
-      chessController.boardData = boardData;
+      chessController.gameData.boardData = boardData;
       res.json("OK");
     } catch (error) {
       res.status(500).json(error.message);
     }
   },
 
-  getCurrentMovesData: async (req, res) => {
-    chessController.currentColorMovesData = await currentMovesHandler.getCurrentMovesData(chessController.boardData, chessController.gameData);
-    if (Object.keys(chessController.currentColorMovesData).length !== 0) {
-      res.json(chessController.currentColorMovesData);
-    } else {
-      res.json("L'objet currentMovesData est vide");
-    }
-  },
-
-  getGameData: async (req, res) => {
-    res.json(chessController.gameData);
-  },
-
   moveVerification: async (req, res) => {
-    const currentMove = chessController.currentColorMovesData.moves[req.body.piece_id][req.body.order];
+    const currentMove = chessController.gameData.currentColorMovesData.moves[req.body.piece_id][req.body.order];
     if (req.body.originCase === currentMove.originCase && req.body.destinationCase === currentMove.destinationCase && req.body.killingMove === currentMove.killingMove && req.body.killCase === currentMove.killCase) {
       res.json("ok");
-      chessController.boardData = saveMove.saveOurCurrentMove(req.body, chessController.boardData);
-    }
-    else {
-      res.status(500).json("Il y a eu triche là (ou problème qui sait-je)");
+      chessController.gameData = saveMove.saveOurCurrentMove(req.body, chessController.gameData);
+    } else {
+      res.status(500).json("Il y a eu triche là, je reconnais");
     }
   }
 };
-  
+
 module.exports = chessController;

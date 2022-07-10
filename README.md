@@ -33,3 +33,4 @@ Et voilà
 0.4.0 - Mise en place de la base de données sans Sequelize. GEstion de la 1ère route getBoardData avec commande SQL simple. Envoi des données au front.
 0.5.0 - Les pièces sont correctement placées sur le plateau d'échecs, début de lien pour récupérer les données en back pour les mouvements. GetBoardData changé et ajout du resetData
 0.6.0 - Jeux d'échecs fonctionnel visuellement parlant. Reste encore des règles à implémenter. Prochaine étape, rangement, coup de propre. Gros progrès, grosse fierté
+0.6.1 - Beaucoup de micro-correction, de factorisation (avec un peu de dynamisme), optimisation des appels d'API et mise en forme

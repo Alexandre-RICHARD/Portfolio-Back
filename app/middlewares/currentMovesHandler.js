@@ -5,15 +5,15 @@ const currentMovesHandler = {
     moves: {},
   },
 
-  pawnMoves: (boardData) => {
-    const currentPieces = boardData.filter(element => element.piece_name === "pawn" && element.piece_color === currentMovesHandler.playerColor);
+  pawnMoves: (gameData) => {
+    const currentPieces = gameData.boardData.filter(element => element.piece_name === "pawn" && element.piece_color === gameData.currentPlayerColor);
 
     currentPieces.forEach(piece => {
       let moveCounter = 1;
       currentMovesHandler.currentMoves.moves[piece.piece_id] = {};
 
       for (let i = 1; i < 3; i++) {
-        const destinationCase = boardData.find(element => element.x === piece.x && element.y === piece.y + i * currentMovesHandler.calcDirection);
+        const destinationCase = gameData.boardData.find(element => element.x === piece.x && element.y === piece.y + i * currentMovesHandler.calcDirection);
         if (destinationCase) {
           if (destinationCase.piece_name === null && (i === 1 || (i === 2 & piece.already_move === false))) {
             currentMovesHandler.currentMoves.moves[piece.piece_id][moveCounter] = {
@@ -29,9 +29,9 @@ const currentMovesHandler = {
       }
 
       for (let i = -1; i < 2; i += 2) {
-        const destinationCase = boardData.find(element => element.x === piece.x + i && element.y === piece.y + 1 * currentMovesHandler.calcDirection);
+        const destinationCase = gameData.boardData.find(element => element.x === piece.x + i && element.y === piece.y + 1 * currentMovesHandler.calcDirection);
         if (destinationCase) {
-          if (destinationCase.piece_color === currentMovesHandler.opponentColor) {
+          if (destinationCase.piece_color === gameData.opponentColor) {
             currentMovesHandler.currentMoves.moves[piece.piece_id][moveCounter] = {
               originCase: piece.case_name,
               destinationCase: destinationCase.case_name,
@@ -45,10 +45,10 @@ const currentMovesHandler = {
       }
 
       for (let i = -1; i < 2; i += 2) {
-        const destinationCase = boardData.find(element => element.x === piece.x + i && element.y === piece.y + 1 * currentMovesHandler.calcDirection);
-        const killCase = boardData.find(element => element.x === piece.x + i && element.y === piece.y);
+        const destinationCase = gameData.boardData.find(element => element.x === piece.x + i && element.y === piece.y + 1 * currentMovesHandler.calcDirection);
+        const killCase = gameData.boardData.find(element => element.x === piece.x + i && element.y === piece.y);
         if (destinationCase && killCase) {
-          if (destinationCase.piece_name === null && killCase.piece_color === currentMovesHandler.opponentColor && killCase.pawn_just_move_two === true) {
+          if (destinationCase.piece_name === null && killCase.piece_color === gameData.opponentColor && killCase.pawn_just_move_two === true) {
             currentMovesHandler.currentMoves.moves[piece.piece_id][moveCounter] = {
               originCase: piece.case_name,
               destinationCase: destinationCase.case_name,
@@ -67,10 +67,10 @@ const currentMovesHandler = {
     });
   },
 
-  allPiecesMoves: (boardData) => {
+  allPiecesMoves: (gameData) => {
     const pieceTypeArray = ["rook", "knight", "bishop", "queen", "king"];
     for (let pieceType = 0; pieceType < 5; pieceType++) {
-      const currentPieces = boardData.filter(element => element.piece_name === pieceTypeArray[pieceType] && element.piece_color === currentMovesHandler.playerColor);
+      const currentPieces = gameData.boardData.filter(element => element.piece_name === pieceTypeArray[pieceType] && element.piece_color === gameData.currentPlayerColor);
       if (currentPieces) {
         currentPieces.forEach(piece => {
           let moveCounter = 1;
@@ -111,26 +111,24 @@ const currentMovesHandler = {
             let keepSearch = 1;
             let distance = 1;
             while (keepSearch === 1) {
-              const destinationCase = boardData.find(element => element.x === piece.x + searchDirection[pieceTypeArray[pieceType]].x[i] * distance && element.y === piece.y + searchDirection[pieceTypeArray[pieceType]].y[i] * distance);
-              if (destinationCase && (destinationCase.piece_name === null || destinationCase.piece_color === currentMovesHandler.opponentColor)) {
-                //* PARFAIT JUSQUE LÀ *//
+              const destinationCase = gameData.boardData.find(element => element.x === piece.x + searchDirection[pieceTypeArray[pieceType]].x[i] * distance && element.y === piece.y + searchDirection[pieceTypeArray[pieceType]].y[i] * distance);
+              if (destinationCase && (destinationCase.piece_name === null || destinationCase.piece_color === gameData.opponentColor)) {
                 currentMovesHandler.currentMoves.moves[piece.piece_id][moveCounter] = {
                   originCase: piece.case_name,
                   destinationCase: destinationCase.case_name,
-                  killingMove: destinationCase.piece_color === currentMovesHandler.opponentColor ? true : false,
-                  killCase: destinationCase.piece_color === currentMovesHandler.opponentColor ? destinationCase.case_name : null,
+                  killingMove: destinationCase.piece_color === gameData.opponentColor ? true : false,
+                  killCase: destinationCase.piece_color === gameData.opponentColor ? destinationCase.case_name : null,
                 };
                 moveCounter++;
-                keepSearch = destinationCase.piece_color === currentMovesHandler.opponentColor || searchDirection[pieceTypeArray[pieceType]].distance === distance ? 0 : 1;
+                keepSearch = destinationCase.piece_color === gameData.opponentColor || searchDirection[pieceTypeArray[pieceType]].distance === distance ? 0 : 1;
                 distance++;
                 currentMovesHandler.currentMoves.totalNumberPossibleMoves++;
-              }
-              else {
+              } else {
                 keepSearch = 0;
               }
             }
           }
-    
+
           if (Object.keys(currentMovesHandler.currentMoves.moves[piece.piece_id]).length === 0) {
             currentMovesHandler.currentMoves.moves[piece.piece_id] = null;
           }
@@ -139,14 +137,12 @@ const currentMovesHandler = {
     }
   },
 
-  getCurrentMovesData: (boardData, gameData) => {
+  getCurrentMovesData: (gameData) => {
     currentMovesHandler.currentMoves.totalNumberPossibleMoves = 0;
     currentMovesHandler.currentMoves.moves = {};
-    currentMovesHandler.playerColor = gameData.currentPlayerColor;
-    currentMovesHandler.opponentColor = gameData.opponentColor;
     currentMovesHandler.calcDirection = gameData.currentPlayerColor === "white" ? 1 : -1;
-    currentMovesHandler.pawnMoves(boardData);
-    currentMovesHandler.allPiecesMoves(boardData);
+    currentMovesHandler.pawnMoves(gameData);
+    currentMovesHandler.allPiecesMoves(gameData);
     return currentMovesHandler.currentMoves;
   },
 };
