@@ -6,10 +6,6 @@ const chessController = {
 
   gameData: {
     boardData: [],
-    currentColorMovesData: [],
-    cimetary: [],
-    currentPlayerColor: "white",
-    opponentColor: "black",
   },
 
   getChessGameData: async (req, res) => {
@@ -24,7 +20,13 @@ const chessController = {
   resetBoardData: async (req, res) => {
     try {
       const boardData = await chessGame.getAllBoardData();
-      chessController.gameData.boardData = boardData;
+      chessController.gameData = {
+        ...chessController.gameData,
+        boardData: boardData,
+        cimetary: [],
+        currentPlayerColor: "white",
+        opponentColor: "black",
+      };
       res.json("OK");
     } catch (error) {
       res.status(500).json(error.message);

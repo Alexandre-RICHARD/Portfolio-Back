@@ -9,11 +9,7 @@ app.use(cors());
 app.use(express.json());
 app.use(router);
 
-const start = () => {
-  app.listen(PORT, () => {
-    console.info(`Notre serveur fonctionne bien sur le port ${PORT}.`);
-  });
-};
+const start = () => app.listen(PORT, () => {});
 
 module.exports = {
   start

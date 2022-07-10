@@ -34,3 +34,4 @@ Et voilà
 0.5.0 - Les pièces sont correctement placées sur le plateau d'échecs, début de lien pour récupérer les données en back pour les mouvements. GetBoardData changé et ajout du resetData
 0.6.0 - Jeux d'échecs fonctionnel visuellement parlant. Reste encore des règles à implémenter. Prochaine étape, rangement, coup de propre. Gros progrès, grosse fierté
 0.6.1 - Beaucoup de micro-correction, de factorisation (avec un peu de dynamisme), optimisation des appels d'API et mise en forme
+0.6.3 - Encore un peu de factorisation et fonction unique pour la gestion des mouvements
