@@ -8,9 +8,9 @@ const chessController = {
     boardData: [],
   },
 
-  getChessGameData: async (req, res) => {
+  getChessGameData: (req, res) => {
     if (Object.keys(chessController.gameData.boardData).length !== 0) {
-      chessController.gameData.currentColorMovesData = await currentMovesHandler.getCurrentMovesData(chessController.gameData);
+      chessController.gameData.currentColorMovesData = currentMovesHandler.getCurrentMovesData(chessController.gameData);
       res.json(chessController.gameData);
     } else {
       res.json("L'objet gameData est vide");
@@ -33,7 +33,7 @@ const chessController = {
     }
   },
 
-  moveVerification: async (req, res) => {
+  moveVerification: (req, res) => {
     const currentMove = chessController.gameData.currentColorMovesData.moves[req.body.piece_id][req.body.order];
     if (req.body.originCase === currentMove.originCase && req.body.destinationCase === currentMove.destinationCase && req.body.killingMove === currentMove.killingMove && req.body.killCase === currentMove.killCase) {
       res.json("ok");
