@@ -5,7 +5,7 @@ const saveMove = {
         ...element,
         control_by_white: 0,
         control_by_black: 0,
-        heavy_control: false,
+        absolute_pin: false,
         pawn_just_move_two: element.piece_name === "pawn" ? false : null,
       };
     });

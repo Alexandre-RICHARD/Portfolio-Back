@@ -36,3 +36,4 @@ Et voilà
 0.6.1 - Beaucoup de micro-correction, de factorisation (avec un peu de dynamisme), optimisation des appels d'API et mise en forme
 0.6.3 - Encore un peu de factorisation et fonction unique pour la gestion des mouvements
 0.6.4 - Tri des async/await/promise/then
+0.6.5 - Début de la prise en compte de l'échec au roi, clouage et mise en échec du roi ok

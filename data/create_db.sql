@@ -11,7 +11,7 @@ CREATE TABLE "chess"(
   "is_piece" BOOLEAN NOT NULL,
   "control_by_white" INTEGER NOT NULL,
   "control_by_black" INTEGER NOT NULL,
-  "heavy_control" BOOLEAN NOT NULL,
+  "absolute_pin" BOOLEAN NOT NULL,
   "piece_name" TEXT,
   "piece_id" TEXT,
   "piece_color" TEXT,
@@ -19,7 +19,7 @@ CREATE TABLE "chess"(
   "already_move" BOOLEAN
 );
 
-INSERT INTO "chess"("x", "y", "case_color", "case_name", "is_piece", "control_by_white", "control_by_black", "heavy_control", "piece_name", "piece_id", "piece_color", "pawn_just_move_two", "already_move") VALUES
+INSERT INTO "chess"("x", "y", "case_color", "case_name", "is_piece", "control_by_white", "control_by_black", "absolute_pin", "piece_name", "piece_id", "piece_color", "pawn_just_move_two", "already_move") VALUES
 (1, 1, 'black', 'a1', true, 0, 0, false,  'rook',  'r1w',  'white', null, false),
 (2, 1, 'white', 'b1', true, 0, 0, false,  'knight',  'c1w',  'white', null, null),
 (3, 1, 'black', 'c1', true, 0, 0, false,  'bishop',  'b1w',  'white', null, null),

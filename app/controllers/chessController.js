@@ -3,14 +3,14 @@ const currentMovesHandler = require("../middlewares/currentMovesHandler");
 const saveMove = require("../middlewares/saveMove");
 
 const chessController = {
-
   gameData: {
     boardData: [],
   },
 
   getChessGameData: (req, res) => {
     if (Object.keys(chessController.gameData.boardData).length !== 0) {
-      chessController.gameData.currentColorMovesData = currentMovesHandler.getCurrentMovesData(chessController.gameData);
+      chessController.gameData.opponentColorMovesData = currentMovesHandler.getCurrentMovesData(chessController.gameData, "opponent");
+      chessController.gameData.currentColorMovesData = currentMovesHandler.getCurrentMovesData(chessController.gameData, "player");
       res.json(chessController.gameData);
     } else {
       res.json("L'objet gameData est vide");
