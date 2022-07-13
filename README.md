@@ -37,3 +37,4 @@ Et voilà
 0.6.3 - Encore un peu de factorisation et fonction unique pour la gestion des mouvements
 0.6.4 - Tri des async/await/promise/then
 0.6.5 - Début de la prise en compte de l'échec au roi, clouage et mise en échec du roi ok
+0.6.6 - Le clouage est opérationnel et permet d'enlever les mouvements qui créerait un échec au roi depuis une exposition.

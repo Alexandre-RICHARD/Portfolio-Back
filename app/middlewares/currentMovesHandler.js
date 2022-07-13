@@ -6,7 +6,6 @@ const currentMovesHandler = {
       const currentPieces = gameData.boardData.filter(element => element.piece_name === pieceTypeArray[pieceType] && element.piece_color === currentData.playerColor);
       if (currentPieces) {
         currentPieces.forEach(piece => {
-          let moveCounter = 1;
           currentData.moves[piece.piece_id] = {};
           const searchDirection = {
             pawn: {
@@ -46,21 +45,20 @@ const currentMovesHandler = {
               y: [-1, 0, 1, 1, 1, 0, -1, -1],
             },
           };
-          
+
           for (let i = 0; i < searchDirection[pieceTypeArray[pieceType]].direction; i++) {
             let keepSearch = 1;
             let distance = 1;
             while (keepSearch === 1) {
               const destinationCase = gameData.boardData.find(element => element.x === piece.x + searchDirection[pieceTypeArray[pieceType]].x[i] * distance && element.y === piece.y + searchDirection[pieceTypeArray[pieceType]].y[i] * distance);
               if (destinationCase && ((pieceTypeArray[pieceType] !== "pawn" && (destinationCase.piece_name === null || destinationCase.piece_color === currentData.opponentColor)) || (destinationCase.piece_name === null && pieceTypeArray[pieceType] === "pawn"))) {
-                currentData.moves[piece.piece_id][moveCounter] = {
+                currentData.moves[piece.piece_id][destinationCase.case_name] = {
                   originCase: piece.case_name,
                   destinationCase: destinationCase.case_name,
                   killingMove: destinationCase.piece_color === currentData.opponentColor ? true : false,
                   killCase: destinationCase.piece_color === currentData.opponentColor ? destinationCase.case_name : null,
                 };
                 gameData.boardData[destinationCase.id - 1][`control_by_${currentData.playerColor}`]++;
-                moveCounter++;
                 keepSearch = destinationCase.piece_color === currentData.opponentColor || searchDirection[pieceTypeArray[pieceType]].distance === distance ? 0 : 1;
                 distance++;
                 currentData.totalNumberPossibleMoves++;
@@ -98,7 +96,7 @@ const currentMovesHandler = {
                           currentData.pin[piece.piece_id] = {
                             ...currentData.pin[piece.piece_id],
                             pinnedCase: key,
-                            x: [searchDirection[pieceTypeArray[pieceType]].x[i], searchDirection[pieceTypeArray[pieceType]].x[i] * -1],
+                            x: [searchDirection[pieceTypeArray[pieceType]].x[i], searchDirection[pieceTypeArray[pieceType]].x[i] * - 1],
                             y: [searchDirection[pieceTypeArray[pieceType]].y[i], searchDirection[pieceTypeArray[pieceType]].y[i] * - 1],
                           };
                         }
@@ -121,14 +119,13 @@ const currentMovesHandler = {
             for (let i = -1; i < 2; i += 2) {
               const destinationCase = gameData.boardData.find(element => element.x === piece.x + i && element.y === piece.y + searchDirection.pawn.y[0]);
               if (destinationCase && destinationCase.piece_color === currentData.opponentColor) {
-                currentData.moves[piece.piece_id][moveCounter] = {
+                currentData.moves[piece.piece_id][destinationCase.case_name] = {
                   originCase: piece.case_name,
                   destinationCase: destinationCase.case_name,
                   killingMove: true,
                   killCase: destinationCase.case_name,
                 };
                 gameData.boardData[destinationCase.id - 1][`control_by_${currentData.playerColor}`]++;
-                moveCounter++;
                 currentData.totalNumberPossibleMoves++;
               }
             }
@@ -136,17 +133,45 @@ const currentMovesHandler = {
               const destinationCase = gameData.boardData.find(element => element.x === piece.x + i && element.y === piece.y + searchDirection.pawn.y[0]);
               const killCase = gameData.boardData.find(element => element.x === piece.x + i && element.y === piece.y);
               if (destinationCase && killCase && destinationCase.piece_name === null && killCase.piece_color === currentData.opponentColor && killCase.pawn_just_move_two === true) {
-                currentData.moves[piece.piece_id][moveCounter] = {
+                currentData.moves[piece.piece_id][destinationCase.case_name] = {
                   originCase: piece.case_name,
                   destinationCase: destinationCase.case_name,
                   killingMove: true,
                   killCase: killCase.case_name,
                 };
                 gameData.boardData[destinationCase.id - 1][`control_by_${currentData.playerColor}`]++;
-                moveCounter++;
                 currentData.totalNumberPossibleMoves++;
               }
             }
+          }
+
+          if (piece.absolute_pin === true) {
+            const directionX = gameData.opponentColorMovesData.pin[Object.keys(gameData.opponentColorMovesData.pin)[0]].x;
+            const directionY = gameData.opponentColorMovesData.pin[Object.keys(gameData.opponentColorMovesData.pin)[0]].y;
+            const originCaseX = piece.x;
+            const originCaseY = piece.y;
+            const possibleMoves = Object.values(currentData.moves[piece.piece_id]).map(element => element.destinationCase);
+            const safeLine = [];
+
+            for (let i = 0; i < 2; i++) {
+              let distance = 1;
+              let keepSearch = 1;
+              while (keepSearch === 1) {
+                const temporaryCase = gameData.boardData.find(element => element.x === originCaseX + directionX[i] * distance && element.y === originCaseY + directionY[i] * distance);
+                if (temporaryCase && (temporaryCase.piece_name === null || temporaryCase.piece_color === currentData.opponentColor)) {
+                  safeLine.push(temporaryCase.case_name);
+                  distance++;
+                } else {
+                  keepSearch = 0;
+                }
+              }
+            }
+            possibleMoves.forEach(element => {
+              if (!safeLine.find(subElement => subElement === element)) {
+                delete currentData.moves[piece.piece_id][element];
+                currentData.totalNumberPossibleMoves--;
+              }
+            });
           }
 
           if (Object.keys(currentData.moves[piece.piece_id]).length === 0) {
@@ -155,12 +180,10 @@ const currentMovesHandler = {
         });
       }
     }
-    console.log("\nNEW LANE");
     return currentData;
   },
 
   getCurrentMovesData: (gameData, playerOrOpponent) => {
-    currentMovesHandler.test = {};
     const currentData = {
       totalNumberPossibleMoves: 0,
       moves: {},
