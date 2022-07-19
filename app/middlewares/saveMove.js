@@ -13,7 +13,6 @@ const saveMove = {
     let destinationCase = gameData.boardData.find(element => element.case_name === currentMove.destinationCase);
     gameData.boardData[destinationCase.id - 1] = {
       ...destinationCase,
-      is_piece: true,
       piece_name: originCase.piece_name,
       piece_id: originCase.piece_id,
       piece_color: originCase.piece_color,
@@ -22,7 +21,6 @@ const saveMove = {
     };
     gameData.boardData[originCase.id - 1] = {
       ...originCase,
-      is_piece: false,
       piece_name: null,
       piece_id: null,
       piece_color: null,
@@ -40,7 +38,6 @@ const saveMove = {
 
       gameData.boardData[killCase.id - 1] = {
         ...killCase,
-        is_piece: false,
         piece_name: null,
         piece_id: null,
         piece_color: null,
