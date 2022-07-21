@@ -87,3 +87,8 @@ Et voilà
 - Pas mal de reformatage dans le currentMovesHandler
 - Meilleure gestion de l'objet CurrentData
 - Meilleure gestion des appels de fonction pour avoir moins de calcul à faire (pas encore optimal évidemment)
+
+### 0.6.8 ```21 juillet 2022```
+- Légère modification dans le ChessController pour récupérer la copie du mouvement à vérifier directement en fonction du nom de la pièce et de sa destination
+- Suppression des consoles.log qui traîne
+- Changement d'assignation de valeur dans le SaveMove pour qu'en cas de "pawnTransformation" la pièce enregistrée sur une case soit celle choisie

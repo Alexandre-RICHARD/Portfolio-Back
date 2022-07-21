@@ -13,7 +13,7 @@ const saveMove = {
     let destinationCase = gameData.boardData.find(element => element.case_name === currentMove.destinationCase);
     gameData.boardData[destinationCase.id - 1] = {
       ...destinationCase,
-      piece_name: originCase.piece_name,
+      piece_name: currentMove.pawnTransformationPieceType === undefined ? originCase.piece_name : currentMove.pawnTransformationPieceType,
       piece_id: originCase.piece_id,
       piece_color: originCase.piece_color,
       pawn_just_move_two: originCase.piece_name === "pawn" && Math.abs(originCase.case_name.charAt(1) - destinationCase.case_name.charAt(1)) === 2 ? true : false,

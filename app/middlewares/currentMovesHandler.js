@@ -249,17 +249,16 @@ const currentMovesHandler = {
     }
 
     Object.keys(currentData.moves).map(element => element).forEach(element => {
-      console.log("--------");
       Object.keys(currentData.moves[element]).forEach(subElement => {
         if (threateningCases.indexOf(subElement) < 0) {
           delete currentData.moves[element][subElement];
+          currentData.totalNumberPossibleMoves--;
         }
       });
       if (Object.keys(currentData.moves[element]).length === 0) {
         delete currentData.moves[element];
       }
     });
-    console.log(currentData.moves);
   },
 
   canKingMove: (gameData, currentData, color1, color2) => {

@@ -32,7 +32,7 @@ const chessController = {
   },
 
   moveVerification: (req, res) => {
-    const currentMove = chessController.gameData.currentColorMovesData.moves[req.body.piece_id][req.body.order];
+    const currentMove = chessController.gameData.currentColorMovesData.moves[req.body.piece_id][req.body.destinationCase];
     if (req.body.originCase === currentMove.originCase && req.body.destinationCase === currentMove.destinationCase && req.body.killingMove === currentMove.killingMove && req.body.killCase === currentMove.killCase) {
       chessController.gameData = saveMove.saveOurCurrentMove(req.body, chessController.gameData);
       chessController.calculatesMoves();
