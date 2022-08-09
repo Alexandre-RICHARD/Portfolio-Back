@@ -92,3 +92,7 @@ Et voilà
 - Légère modification dans le ChessController pour récupérer la copie du mouvement à vérifier directement en fonction du nom de la pièce et de sa destination
 - Suppression des consoles.log qui traîne
 - Changement d'assignation de valeur dans le SaveMove pour qu'en cas de "pawnTransformation" la pièce enregistrée sur une case soit celle choisie
+
+### 0.6.10 ```9 août 2022```
+- Suppression du fichier de création de base de données modifiés.
+- Mise en ligne du back, du front et de la base de données.
