@@ -10,25 +10,10 @@
         "ecmaVersion": "latest"
     },
     "rules": {
-        "brace-style": [
-            "error",
-            "1tbs"
-        ],
-        "indent": [
-            "error",
-            2
-        ],
-        "linebreak-style": [
-            "error",
-            "windows"
-        ],
-        "quotes": [
-            "error",
-            "double"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ]
+        "brace-style": ["error", "1tbs"],
+        "indent": ["error", 4],
+        "linebreak-style": ["error", "windows"],
+        "quotes": ["error", "double"],
+        "semi": ["error", "always"]
     }
 }

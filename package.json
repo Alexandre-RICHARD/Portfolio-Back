@@ -1,28 +1,28 @@
 {
-  "name": "tryhard-but-slowrun-back",
-  "version": "0.6.10",
-  "description": "Projet TryHard but SlowRun par Alexandre Richard. Projet à but auto-formatif.",
-  "main": "index.js",
-  "scripts": {
-    "lint": "eslint ./*.js",
-    "lint:fix": "eslint --fix ./*.js",
-    "clean": "rd /s /q node_modules & del /s /q package-lock.json"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Alexandre-RICHARD/tryhard-but-slowrun-back.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "eslint": "^8.19.0"
-  },
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.1",
-    "express": "^4.18.1",
-    "nodemon": "^2.0.19",
-    "pg": "^8.7.3"
-  }
+    "name": "tryhard-but-slowrun-back",
+    "version": "0.7.7",
+    "description": "Projet TryHard but SlowRun par Alexandre Richard. Projet à but auto-formatif.",
+    "main": "index.js",
+    "scripts": {
+        "lint": "eslint ./*.js",
+        "lint:fix": "eslint --fix ./*.js",
+        "clean": "rd /s /q node_modules & del /s /q package-lock.json"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Alexandre-RICHARD/tryhard-but-slowrun-back.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "eslint": "^8.19.0"
+    },
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^16.0.1",
+        "express": "^4.18.1",
+        "nodemon": "^2.0.19",
+        "pg": "^8.7.3"
+    }
 }

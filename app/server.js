@@ -12,5 +12,5 @@ app.use(router);
 const start = () => app.listen(PORT, () => {});
 
 module.exports = {
-  start
+    start,
 };
