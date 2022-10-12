@@ -120,3 +120,14 @@ Et voilà
 ### 0.7.7 `17 août 2022`
 
 -   Mise en forme de tous les fichiers avec prettier
+
+### 0.9.34 `12 octobre 2022`
+
+-   Rajout de la personnalisation de VSCode et donc mise en .gitignore du dossier .vscode
+-   Mise à jour des package npm
+-   Création de controller pour un total de 4 afin de séparer les usages.
+-   PortfolioController pour le moment gère l'appel de la page contact qui servira à envoyer un mail depuis le formulaire de contact
+-   GlobalController qui ne sert pour l'instant qu'à indiquer le bon fonctionnement du serveur via la méthode test
+-   AccountController qui vient prendre en charge les requêtes liées aux connexions/inscriptions
+-   ChessController qui n'a pas bougé
+-   Importation dans le router et gestion des diverses route
