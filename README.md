@@ -127,5 +127,5 @@ Voici [le site](https://server.alexandre-richard.fr) en question
 
 ### 0.9.37 `14 octobre 2022`
 
--   Rajout de commande pour créer et détruire un dossier .build contenant les bons fichiers à envoyer sur le serveur hébergé
+-   Rajout de commande pour créer et vider un dossier .build contenant les bons fichiers à envoyer sur le serveur hébergé
 -   Rajout de ce dossier en .gitignore
