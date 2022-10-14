@@ -124,3 +124,8 @@ Voici [le site](https://server.alexandre-richard.fr) en question
 -   Supression de node-mandrill et de nodemon (ce dernier étant installé en global)
 -   Dans le models ChessGame, changement dans la construction de la fonction
 -   Dans le models AccountHandler, préparation de l'insertion des données en BDD
+
+### 0.9.37 `14 octobre 2022`
+
+-   Rajout de commande pour créer et détruire un dossier .build contenant les bons fichiers à envoyer sur le serveur hébergé
+-   Rajout de ce dossier en .gitignore
