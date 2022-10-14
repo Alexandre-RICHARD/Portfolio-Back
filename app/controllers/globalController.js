@@ -1,6 +1,8 @@
+const pjson = require("../../package.json");
 const globalController = {
     test: (req, res) => {
-        res.json("Serveur fonctionnel - Version actuelle : 0.9.34");
+        const fullUrl = `${req.protocol}://${req.headers.host}${req.originalUrl}`;
+        res.json(`Serveur fonctionnel sur l'adresse ${fullUrl} - Version actuelle : ${pjson.version}`);
     },
 };
 

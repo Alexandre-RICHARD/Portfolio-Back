@@ -1,30 +1,9 @@
 # TryHard but SlowRun - Le back
 
-## Installation (classique) :
+Bonjour, bienvenue sur le répo de mon portfolio. J'y ai entreposé ma présentation, mon CV, mes projets ainsi que mes contacts. Tout mes projets présentés sont hébergés sur le même site.
+Il s'agit ici du back avec ci-dessous l'historique des version et leur détails.
 
-<details>
-<summary>Développer</summary>
-
-**1 : Création de la BDD**
-
--   `sudo -i -u postgres;` sur Ubuntu ou `psql -U postgres` sur Windows
--   `CREATE ROLE chess WITH LOGIN PASSWORD 'chess';`
--   `CREATE DATABASE chess OWNER chess;`
-
-**2 : Sur un autre terminal**
-
--   `psql -U chess -d chess -f ./data/create_db.sql;'
--   MDP `chess`
-
-**3 : Créer le .env**
-
--   À l'intérieur du .env, mettre :
--   `PG_URL=postgresql://chess:chess@localhost:5432/chess`
--   `PORT=3000`
-
-Et voilà
-
-</details>
+Voici [le site](https://server.alexandre-richard.fr) en question
 
 ## Historique des version
 
@@ -131,3 +110,17 @@ Et voilà
 -   AccountController qui vient prendre en charge les requêtes liées aux connexions/inscriptions
 -   ChessController qui n'a pas bougé
 -   Importation dans le router et gestion des diverses route
+
+### 0.9.36 `14 octobre 2022`
+
+-   Petit changement dans le début de Readme pour qu'il soit conforme à celui du front et à l'évolution actuelle du projet
+-   Mise en gitignore du .env
+-   Changement dans la création de la connectionString pour le fichier database.js
+-   Début de gestion de la connexion avec la récupération des données de formulaire ainsi que la seconde vérification en regex
+-   Inscription en base de données des données d'inscription fonctionnelles mais le processus n'est pas encore le bon
+-   La route test est maintenant basiquement la route sans url du server, plus logique de vérifier qu'il fonctionne de cette manière là
+-   Le server n'a plus besoin de la variable PORT qui sera toujours 3000 car le serveur hébergé n'a pas besoin de cette variable
+-   Le global controller contient la route / de base servant de test pour si le serveur fonctionne. Il rend l'adresse et la version du serveur
+-   Supression de node-mandrill et de nodemon (ce dernier étant installé en global)
+-   Dans le models ChessGame, changement dans la construction de la fonction
+-   Dans le models AccountHandler, préparation de l'insertion des données en BDD

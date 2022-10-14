@@ -5,7 +5,7 @@ const portfolioController = require("./controllers/portfolioController");
 const accountController = require("./controllers/accountController");
 const chessController = require("./controllers/chessController");
 
-router.get("/test", globalController.test);
+router.get("/", globalController.test);
 
 router.post("/contact", portfolioController.contactSendMail);
 

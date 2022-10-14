@@ -1,10 +1,10 @@
 const db = require("../database.js");
 
-class chessGame {
-    static async getAllBoardData() {
-        const { rows } = await db.query("SELECT * FROM chess;");
+const chessGame = {
+    async getAllBoardData() {
+        const { rows } = await db.query("SELECT * FROM public.chess;");
         return rows;
     }
-}
+};
 
 module.exports = chessGame;
