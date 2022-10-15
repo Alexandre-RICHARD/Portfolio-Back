@@ -1,5 +1,8 @@
 const accountHandler = require("../models/accountHandler");
 
+// Les données venant du front vont venir subir les mêmes tests regex qu'en front. Ceci afin d'être sûr que l'utilisateur n'a pas modifié le code front. Et si on vérifie en front d'abord, c'est pour limiter les requêtes inutiles et donc de saturer le serveur
+//  Le fonctionnement est similaire pour les deux fonctions. On créer une variable inputError pour chaque valeur. On le test exactement comme en front. Si l'input passe le test, il est ok, sinon on inscrit une erreur commune.
+// A la fin, on vérifie si tous les résultats de tests sont ok, si oui, on envoi les données dans les models pour utilisation en BDD
 const accountController = {
     registration: async (req, res) => {
         const testRsult = {
@@ -67,12 +70,14 @@ const accountController = {
             }
         }
     },
+
     connection: (req, res) => {
         const testRsult = {
             mailT: null,
             passwordT: null,
         };
         const { mail, password } = req.body;
+
         if (
             mail.match(
                 /^(^([a-z])+([a-z0-9]+)[.\-_]?)+[a-z0-9]+@(([a-z\-0-9])+([.]{1})?(([a-z\-0-9])+([.]{1})+[a-z]{2,}))$/gm
@@ -82,6 +87,7 @@ const accountController = {
         } else {
             testRsult.mailT = "Le format de l'adresse mail n'est pas correct.";
         }
+        
         try {
             if (
                 password.match(/([a-z])/g).join("").length >= 2 &&

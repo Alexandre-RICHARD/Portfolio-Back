@@ -1,5 +1,6 @@
+// Fonctionnement pas fonctionnel... donc fichier abandonné pour l'instant
 const portfolioController = {
-    contactSendMail: (req, res) => {
+    contactSendMail: (req, res) => { //! TEMPORAIRE
         const mailData = {
             name: req.body.name,
             mail: req.body.mail,

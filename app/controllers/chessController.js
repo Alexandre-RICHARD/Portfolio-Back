@@ -2,19 +2,27 @@ const chessGame = require("../models/chessGame");
 const currentMovesHandler = require("../middlewares/currentMovesHandler");
 const saveMove = require("../middlewares/saveMove");
 
+// Notre controller chess, qui récupère toutes les requêtes liées
 const chessController = {
+    //  On créé l'objet gameData qui contient toutes les informations nécessaires aux jeu d'échecs
     gameData: {
         boardData: [],
     },
 
+    // Requêtes demandans l'objet gameData, on le renvoit s'il n'est pas vide, sinon on indique qu'il est vide
     getChessGameData: (req, res) => {
-        if (Object.keys(chessController.gameData.boardData).length !== 0) {
-            res.json(chessController.gameData);
-        } else {
-            res.json("L'objet gameData est vide");
+        try {
+            if (Object.keys(chessController.gameData.boardData).length !== 0) {
+                res.json(chessController.gameData);
+            } else {
+                res.json("L'objet gameData est vide");
+            }
+        } catch (error) {
+            res.status(500).json(error.message);
         }
     },
 
+    // Réinitialisation du gameData, on va chercher en base de données les valeurs originales
     resetBoardData: async (req, res) => {
         try {
             const boardData = await chessGame.getAllBoardData();
@@ -24,14 +32,18 @@ const chessController = {
                 currentPlayerColor: "white",
                 opponentColor: "black",
             };
+            // Durant la réinitialisation, on demande directement le fait de calculer les mouvements possibles au premier coup
             chessController.calculatesMoves();
-            res.json("OK");
+            res.json("Le reset des informations du plateau a été fait.");
         } catch (error) {
             res.status(500).json(error.message);
         }
     },
 
+    // Fonction appelé quand un coup est joué en front et envoyé.
     moveVerification: (req, res) => {
+        // On commence par récupérer les données de coups possibles actuels et on vient vérifier que le coup envoyé est valide en le comparant avec les données serveur. Si oui, alors on valide le coup en envoyant les informations dans le fichier saveMove
+        // On appelle la fonction calculatesMoves avant de terminer la requêtes
         const currentMove =
             chessController.gameData.currentColorMovesData.moves[
                 req.body.piece_id
@@ -53,6 +65,8 @@ const chessController = {
         }
     },
 
+    // La fonction calculatesMoves est appelé uniquement quand le jeu est initialisée, ou quand un coup a été joué. On a besoin de calculer les coups de l'adversaire pour calculer ses coups actuels.
+    // Donc on commence par calculer ceux de l'adversaire donc on va se servir pour calculer les notres avant de supprimer ceux de l'adversaire
     calculatesMoves: () => {
         chessController.gameData.opponentColorMovesData =
             currentMovesHandler.getCurrentMovesData(

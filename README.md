@@ -129,3 +129,23 @@ Voici [le site](https://server.alexandre-richard.fr) en question
 
 -   Rajout de commande pour créer et vider un dossier .build contenant les bons fichiers à envoyer sur le serveur hébergé
 -   Rajout de ce dossier en .gitignore
+
+### 0.9.38 `15 octobre 2022`
+
+-   Code review de tous le projet avec quelques corrections mais surtout l'identification de nombreux point à changer et à améliorer
+-   Mise en commentaires des fichiers suivants (pas pour tout, uniquement les choses qui me semblaient importantes à expliquer, fonctions complexes...) :
+-   Index.js
+-   database.js
+-   router.js
+-   server.js
+-   accountController.js
+-   chessController.js
+-   globalController.js
+-   accountHandler.js
+-   chessGame.js
+-   Nouvelle manière de construire la connectionString, définitive cette fois (si tout va bien).
+-   Changement dans le message de 404 du router.js, lorsqu'il n'a pas pu traité par une fonction la requête
+-   Remise du port || 3000 dans le server.js car finalement, il pourrait être utile
+-   Rajout d'un try/catch pour le getChessData dans chessController.js
+-   Changement dans le message de réponse du resetBoardData dans chessController.js
+-   Rajout de const et return rows dans accountHandler dans registerNewUser
