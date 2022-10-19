@@ -13,9 +13,9 @@ const chessController = {
     getChessGameData: (req, res) => {
         try {
             if (Object.keys(chessController.gameData.boardData).length !== 0) {
-                res.json(chessController.gameData);
+                res.status(200).json(chessController.gameData);
             } else {
-                res.json("L'objet gameData est vide");
+                res.status(200).json("L'objet gameData est vide");
             }
         } catch (error) {
             res.status(500).json(error.message);
@@ -34,7 +34,7 @@ const chessController = {
             };
             // Durant la réinitialisation, on demande directement le fait de calculer les mouvements possibles au premier coup
             chessController.calculatesMoves();
-            res.json("Le reset des informations du plateau a été fait.");
+            res.status(200).json("Le reset des informations du plateau a été fait.");
         } catch (error) {
             res.status(500).json(error.message);
         }
@@ -59,7 +59,7 @@ const chessController = {
                 chessController.gameData
             );
             chessController.calculatesMoves();
-            res.json("ok");
+            res.status(200).json("ok");
         } else {
             res.status(500).json("Il y a eu triche là, je reconnais");
         }

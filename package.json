@@ -1,10 +1,10 @@
 {
     "name": "tryhard-but-slowrun-back",
-    "version": "0.9.38",
+    "version": "0.9.40",
     "description": "Projet TryHard but SlowRun par Alexandre Richard. Projet à but auto-formatif.",
     "main": "index.js",
     "scripts": {
-        "build": "xcopy /y .\\index.js .\\.build & xcopy /y .\\package.json .\\.build & xcopy /y .\\.env .\\.build & xcopy /y /s /q .\\app .\\.build\\app",
+        "build": "rd /s /q .build & mkdir .build .build\\app & xcopy /y .\\index.js .\\.build & xcopy /y .\\package.json .\\.build & xcopy /y .\\.env .\\.build & xcopy /y /s /q .\\app .\\.build\\app",
         "lint": "eslint ./*.js",
         "lint:fix": "eslint --fix ./*.js",
         "clean": "rd /s /q .build & mkdir .build .build\\app",
@@ -21,6 +21,7 @@
         "eslint": "^8.19.0"
     },
     "dependencies": {
+        "bcryptjs": "^2.4.3",
         "cors": "^2.8.5",
         "dotenv": "^16.0.1",
         "express": "^4.18.1",

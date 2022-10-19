@@ -149,3 +149,14 @@ Voici [le site](https://server.alexandre-richard.fr) en question
 -   Rajout d'un try/catch pour le getChessData dans chessController.js
 -   Changement dans le message de réponse du resetBoardData dans chessController.js
 -   Rajout de const et return rows dans accountHandler dans registerNewUser
+
+### 0.9.40 `19 octobre 2022`
+
+-   Rajout de la requête SQL pour récupérer
+-   Installation de Bcryptjs pour crypter le mot de passe, version native car problème d'installation avec la version classique
+-   Petite amélioration de la commande de build pour le back
+-   Ajout de Code de réponse HTTP pour chaque réponse de requête
+-   Correction de quelques fautes d'orthgraphe
+-   Ajout d'une fonction regexTest pour l'accountController afin d'englober tous les tests
+-   Finition de la fonction chargéé de gérer l'inscription. Vérification seconde des regex, prise en charge des erreurs, recherche de compte existant et renvoi de code d'erreur cohérent
+-   Début de gestion de la connexion
