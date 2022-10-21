@@ -160,3 +160,17 @@ Voici [le site](https://server.alexandre-richard.fr) en question
 -   Ajout d'une fonction regexTest pour l'accountController afin d'englober tous les tests
 -   Finition de la fonction chargéé de gérer l'inscription. Vérification seconde des regex, prise en charge des erreurs, recherche de compte existant et renvoi de code d'erreur cohérent
 -   Début de gestion de la connexion
+
+### 0.9.41 `21 octobre 2022`
+
+-   Ajout d'un compteur d'utilisation du serveur depuis son démarrage avec router.use
+-   Changement de l'affichage dans la réponse de base du serveur servant de test. Url, version et useCounter
+-   Changement du nom d'une fonction SQL
+-   Mise en place des variables d'environnements du serveur hébergé sur le gestionnaire en ligne donc retrait du .env donc changement de la commande build
+-   Ajout d'un "returning" dans la requête SQL de l'inscription pour recevoir les mêmes informations que lors de la connexion
+-   Il n'y a plus de valeurs null par défaut pour la réponse login ou register. Maintenant, en fonction de chaque cas, une erreur est rajouté au tableau ou un tableau est envoyé directement
+-   Ceci évite d'avoir à gérer le if et le else et la gestion en front est facilité avec un switch case
+-   Changement de manière de détecter l'absence d'erreur et donc de continuer l'une ou l'autre fonction
+-   Rajout d'un autre try catch pour la première requête SQL de register
+-   Récupération des données de register grâce au "returning"
+-   Finition de la méthode login avec gestion d'erreur et comparaison de mots de passe

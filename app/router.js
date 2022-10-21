@@ -7,6 +7,14 @@ const portfolioController = require("./controllers/portfolioController");
 const accountController = require("./controllers/accountController");
 const chessController = require("./controllers/chessController");
 
+let counter = 0;
+
+router.use((req, res, next) => {
+    counter += 1;
+    req.counter = counter;
+    next();
+});
+
 // On associe chaque duo de requêtes/méthodes à un controller et à une fonction
 router.get("/", globalController.test);
 

@@ -7,143 +7,119 @@ const salt = bcrypt.genSaltSync(10);
 // A la fin, on vérifie si tous les résultats de tests sont ok, si oui, on envoi les données dans les models pour utilisation en BDD
 const accountController = {
     registration: async (req, res) => {
-        const testResult = {
-            mailT: null,
-            nicknameT: null,
-            passwordT: null,
-            passwordConfirmationT: null,
-        };
+        const registerResponse = [];
         const { mail, nickname, password, passwordConfirmation } = req.body;
 
         const regexTest = () => {
             if (
-                mail.match(
-                    /^(^([a-z])+([a-z0-9]+)[.\-_]?)+[a-z0-9]+@(([a-z\-0-9])+([.]{1})?(([a-z\-0-9])+([.]{1})+[a-z]{2,}))$/gm
-                )
+                !mail.match(/^(^([a-z])+([a-z0-9]+)[.\-_]?)+[a-z0-9]+@(([a-z\-0-9])+([.]{1})?(([a-z\-0-9])+([.]{1})+[a-z]{2,}))$/gm)
             ) {
-                testResult.mailT = "OK";
-            } else {
-                testResult.mailT = "format-email";
+                registerResponse.push("format-email");
             }
     
             if (
-                !nickname.match(/[^0-9a-zA-Z-_]/gm) &&
+                !(!nickname.match(/[^0-9a-zA-Z-_]/gm) &&
                 nickname.length >= 3 &&
-                nickname.length <= 25
+                nickname.length <= 25)
             ) {
-                testResult.nicknameT = "OK";
-            } else {
-                testResult.nicknameT = "format-nickname";
+                registerResponse.push("format-nickname");
             }
     
             try {
                 if (
-                    password.match(/([a-z])/g).join("").length >= 2 &&
+                    !(password.match(/([a-z])/g).join("").length >= 2 &&
                     password.match(/([A-Z])/g).join("").length >= 2 &&
                     password.match(/([0-9])/g).join("").length >= 2 &&
                     password.match(/([~!@#$%^&*()\-_=+[\]{};:,.<>/?\\|])/g).join("")
                         .length >= 1 &&
                     !password.match(/([\s\b\n\t])/g) &&
                     password.length >= 8 &&
-                    password.length <= 60
+                    password.length <= 60)
                 ) {
-                    testResult.passwordT = "OK";
-                } else {
-                    testResult.passwordT =
-                        "format-password";
+                    registerResponse.push("format-password");
                 }
             } catch {
-                testResult.passwordT =
-                "format-password";
+                registerResponse.push("format-password");
             }
     
-            if (password === passwordConfirmation) {
-                testResult.passwordConfirmationT = "OK";
-            } else {
-                testResult.passwordConfirmationT =
-                    "match-password";
+            if (password !== passwordConfirmation) {
+                registerResponse.push("match-password");
             }
         };
 
         regexTest();
 
-        if (Object.values(testResult).every((element) => element === "OK")) {
-            const alreadyRegister = await accountHandler.getAlreadyRegister(mail);
-            if (Object.keys(alreadyRegister).length === 0) {
-                const hashedPassword = await bcrypt.hash(password, salt);
-                try {
-                    await accountHandler.registerNewUser(nickname, mail, hashedPassword);
-                    res.status(201).json("register-success");
-                } catch (error) {
-                    res.status(500).json(error.message);
+        if (registerResponse.length === 0) {
+            try {
+                const alreadyRegister = await accountHandler.getOneAccount(mail);
+                if (Object.keys(alreadyRegister).length === 0) {
+                    const hashedPassword = await bcrypt.hash(password, salt);
+                    try {
+                        const result = await accountHandler.registerNewUser(nickname, mail, hashedPassword);
+                        res.status(201).json(["register-success", result]);
+                    } catch (error) {
+                        res.status(500).json(["server-error"]);
+                    }
+                } else {
+                    res.status(200).json(["account-already-exist"]);
                 }
-            } else {
-                res.status(200).json("account-already-exist");
+            } catch (error) {
+                res.status(500).json(["server-error"]);
             }
         } else {
-            res.status(200).json(testResult);
+            res.status(200).json(registerResponse);
         }
     },
 
     connection: async (req, res) => {
-        const testResult = {
-            mailT: null,
-            passwordT: null,
-        };
+        const loginResponse = [];
         const { mail, password } = req.body;
 
         const regexTest = () => {
             if (
-                mail.match(
-                    /^(^([a-z])+([a-z0-9]+)[.\-_]?)+[a-z0-9]+@(([a-z\-0-9])+([.]{1})?(([a-z\-0-9])+([.]{1})+[a-z]{2,}))$/gm
-                )
+                !mail.match(/^(^([a-z])+([a-z0-9]+)[.\-_]?)+[a-z0-9]+@(([a-z\-0-9])+([.]{1})?(([a-z\-0-9])+([.]{1})+[a-z]{2,}))$/gm)
             ) {
-                testResult.mailT = "OK";
-            } else {
-                testResult.mailT = "format-email";
+                loginResponse.push("format-email");
             }
     
             try {
                 if (
-                    password.match(/([a-z])/g).join("").length >= 2 &&
+                    !(password.match(/([a-z])/g).join("").length >= 2 &&
                     password.match(/([A-Z])/g).join("").length >= 2 &&
                     password.match(/([0-9])/g).join("").length >= 2 &&
                     password.match(/([~!@#$%^&*()\-_=+[\]{};:,.<>/?\\|])/g).join("")
                         .length >= 1 &&
                     !password.match(/([\s\b\n\t])/g) &&
                     password.length >= 8 &&
-                    password.length <= 60
+                    password.length <= 60)
                 ) {
-                    testResult.passwordT = "OK";
-                } else {
-                    testResult.passwordT =
-                        "format-password";
+                    loginResponse.push("format-password");
                 }
             } catch {
-                testResult.passwordT =
-                "format-password";
+                loginResponse.push("format-password");
             }
         };
 
         regexTest();
 
-        // if (Object.values(testResult).every((element) => element === "OK")) {
-        //     const alreadyRegister = await accountHandler.getAlreadyRegister(mail);
-        //     if (Object.keys(alreadyRegister).length === 0) {
-        //         const hashedPassword = await bcrypt.hash(password, salt);
-        //         try {
-        //             await accountHandler.registerNewUser(nickname, mail, hashedPassword);
-        //             res.status(201).json("register-success");
-        //         } catch (error) {
-        //             res.status(500).json(error.message);
-        //         }
-        //     } else {
-        //         res.status(200).json("account-already-exist");
-        //     }
-        // } else {
-        //     res.status(200).json(testResult);
-        // }
-        res.status(200).json("Va niquer ta mère Json");
+        if (loginResponse.length === 0) {
+            try {
+                const tryFindAccount = (await accountHandler.getOneAccount(mail))[0];
+                if (tryFindAccount && bcrypt.compareSync(password, tryFindAccount.password_hashed) === true) {
+                    const result = {
+                        nickname: tryFindAccount.nickname,
+                        mail: tryFindAccount.email,
+                    };
+                    res.status(200).json(["login-success", result]);
+                } else {
+                    res.status(200).json(["login-failed"]);
+                }
+            } catch (error) {
+                res.status(500).json(["server-error"]);
+            }
+        } else {
+            res.status(200).json(loginResponse);
+        }
     },
 };
 
