@@ -2,17 +2,17 @@ const db = require("../database.js");
 
 // Notre fichier qui est appelé par le account controller chargé de faire les requêtes liées
 const accountHandler = {
-    async getOneAccount(mail) {
+    async getOneAccount(email) {
         const sql = `
             SELECT * FROM user_register WHERE email = $1
         `;
 
-        const parameters = [mail];
+        const parameters = [email];
 
         const { rows } = await db.query(sql, parameters);
         return rows;
     },
-    async registerNewUser(nickname, mail, password) {
+    async registerNewUser(nickname, email, password) {
         const sql = `
         INSERT INTO 
             user_register 
@@ -29,7 +29,7 @@ const accountHandler = {
             )
             RETURNING nickname, email;
         `;
-        const parameters = [nickname, mail, password];
+        const parameters = [nickname, email, password];
         const { rows } = await db.query(sql, parameters);
         return rows;
     },

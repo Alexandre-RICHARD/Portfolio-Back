@@ -174,3 +174,8 @@ Voici [le site](https://server.alexandre-richard.fr) en question
 -   Rajout d'un autre try catch pour la première requête SQL de register
 -   Récupération des données de register grâce au "returning"
 -   Finition de la méthode login avec gestion d'erreur et comparaison de mots de passe
+
+### 0.9.42 `22 octobre 2022`
+
+-   Changement de nom de variable. En dehors des requêtes SQL et de son fichier, la variable mail ne prendra pas de e (email), globalisé à tous le projet
+-   Mise à jour des package NPM

@@ -14,7 +14,7 @@ const accountController = {
             if (
                 !mail.match(/^(^([a-z])+([a-z0-9]+)[.\-_]?)+[a-z0-9]+@(([a-z\-0-9])+([.]{1})?(([a-z\-0-9])+([.]{1})+[a-z]{2,}))$/gm)
             ) {
-                registerResponse.push("format-email");
+                registerResponse.push("format-mail");
             }
     
             if (
@@ -55,7 +55,11 @@ const accountController = {
                 if (Object.keys(alreadyRegister).length === 0) {
                     const hashedPassword = await bcrypt.hash(password, salt);
                     try {
-                        const result = await accountHandler.registerNewUser(nickname, mail, hashedPassword);
+                        const registerReturning = (await accountHandler.registerNewUser(nickname, mail, hashedPassword))[0];
+                        const result = {
+                            nickname: registerReturning.nickname,
+                            mail: registerReturning.email,
+                        };
                         res.status(201).json(["register-success", result]);
                     } catch (error) {
                         res.status(500).json(["server-error"]);
@@ -79,7 +83,7 @@ const accountController = {
             if (
                 !mail.match(/^(^([a-z])+([a-z0-9]+)[.\-_]?)+[a-z0-9]+@(([a-z\-0-9])+([.]{1})?(([a-z\-0-9])+([.]{1})+[a-z]{2,}))$/gm)
             ) {
-                loginResponse.push("format-email");
+                loginResponse.push("format-mail");
             }
     
             try {
