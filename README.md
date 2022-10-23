@@ -179,3 +179,14 @@ Voici [le site](https://server.alexandre-richard.fr) en question
 
 -   Changement de nom de variable. En dehors des requêtes SQL et de son fichier, la variable mail ne prendra pas de e (email), globalisé à tous le projet
 -   Mise à jour des package NPM
+
+### 0.9.43 `23 octobre 2022`
+
+-   Rajout des deux routes pour la changement de mot de passe et d'adresse-mail
+-   Finalement, tout le projet appelera la variable email en mail, pas de zone à exception
+-   Dans le controller account, pour registration, simplification de la vérification de si un compte existe déjà à cette adresse
+-   Dans le controller account, pour registration, l'objet result envoyé en front vient directement de la requête SQL, il n'est plus créé à la main
+-   Sur la même base que les deux fonctions précédemment créées, prise en charge du changement d'informations de compte
+-   Pour le changement d'adresse-mail : on vérifie les inputs, on trouve le bon compte, on compare le mot de passe, on s'assure qu'aucun compte n'existe avec la nouvelle adresse-mail et on modifie l'adresse originale
+-   Pour le changement de mot de passe : on vérifie les 3 mots de passe, si pas d'erreur, on trouve le bon compte, on compare le mot de passe, on change les informations et on envoie
+-   Création des 2 requêtes SQL pour la modification des infos dans la base de données

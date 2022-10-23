@@ -51,15 +51,10 @@ const accountController = {
 
         if (registerResponse.length === 0) {
             try {
-                const alreadyRegister = await accountHandler.getOneAccount(mail);
-                if (Object.keys(alreadyRegister).length === 0) {
+                if (!(await accountHandler.getOneAccount(mail))[0]) {
                     const hashedPassword = await bcrypt.hash(password, salt);
                     try {
-                        const registerReturning = (await accountHandler.registerNewUser(nickname, mail, hashedPassword))[0];
-                        const result = {
-                            nickname: registerReturning.nickname,
-                            mail: registerReturning.email,
-                        };
+                        const result = (await accountHandler.registerNewUser(nickname, mail, hashedPassword))[0];
                         res.status(201).json(["register-success", result]);
                     } catch (error) {
                         res.status(500).json(["server-error"]);
@@ -112,7 +107,7 @@ const accountController = {
                 if (tryFindAccount && bcrypt.compareSync(password, tryFindAccount.password_hashed) === true) {
                     const result = {
                         nickname: tryFindAccount.nickname,
-                        mail: tryFindAccount.email,
+                        mail: tryFindAccount.mail,
                     };
                     res.status(200).json(["login-success", result]);
                 } else {
@@ -123,6 +118,141 @@ const accountController = {
             }
         } else {
             res.status(200).json(loginResponse);
+        }
+    },
+
+    changeMail: async (req, res) => {
+        const newMailResponse = [];
+        const { currentMail, newMail, newMailConfirmation, password } = req.body;
+
+        const regexTest = () => {
+            if (
+                !newMail.match(/^(^([a-z])+([a-z0-9]+)[.\-_]?)+[a-z0-9]+@(([a-z\-0-9])+([.]{1})?(([a-z\-0-9])+([.]{1})+[a-z]{2,}))$/gm)
+            ) {
+                newMailResponse.push("format-mail");
+            }
+
+            if (newMail !== newMailConfirmation) {
+                newMailResponse.push("match-mail");
+            }
+    
+            try {
+                if (
+                    !(password.match(/([a-z])/g).join("").length >= 2 &&
+                    password.match(/([A-Z])/g).join("").length >= 2 &&
+                    password.match(/([0-9])/g).join("").length >= 2 &&
+                    password.match(/([~!@#$%^&*()\-_=+[\]{};:,.<>/?\\|])/g).join("")
+                        .length >= 1 &&
+                    !password.match(/([\s\b\n\t])/g) &&
+                    password.length >= 8 &&
+                    password.length <= 60)
+                ) {
+                    newMailResponse.push("format-password");
+                }
+            } catch {
+                newMailResponse.push("format-password");
+            }
+        };
+
+        regexTest();
+
+        if (newMailResponse.length === 0) {
+            try {
+                const findGoodAccount = (await accountHandler.getOneAccount(currentMail))[0];
+                if (findGoodAccount) {
+                    if (bcrypt.compareSync(password, findGoodAccount.password_hashed)) {
+                        try {
+                            if (!(await accountHandler.getOneAccount(newMail))[0]) {
+                                const result = (await accountHandler.changmail(findGoodAccount.id, newMail))[0];
+                                res.status(200).json(["change-mail-success", result]);          
+                            } else {
+                                res.status(200).json(["account-already-exist"]);
+                            }
+                        } catch (error) {
+                            res.status(500).json(["server-error"]);
+                        }
+                    } else {
+                        res.status(200).json(["wrong-password"]);
+                    }
+                } else {
+                    res.status(200).json(["mail-error"]);
+                }
+            } catch (error) {
+                res.status(500).json(["server-error"]);
+            }
+        } else {
+            res.status(200).json(newMailResponse);
+        }
+    },
+
+    changePassword: async (req, res) => {
+        const newPasswordResponse = [];
+        const { mail, oldPassword, newPassword, newPasswordConfirmation } = req.body;
+
+        const regexTest = () => {
+            try {
+                if (
+                    !(oldPassword.match(/([a-z])/g).join("").length >= 2 &&
+                    oldPassword.match(/([A-Z])/g).join("").length >= 2 &&
+                    oldPassword.match(/([0-9])/g).join("").length >= 2 &&
+                    oldPassword.match(/([~!@#$%^&*()\-_=+[\]{};:,.<>/?\\|])/g).join("")
+                        .length >= 1 &&
+                    !oldPassword.match(/([\s\b\n\t])/g) &&
+                    oldPassword.length >= 8 &&
+                    oldPassword.length <= 60)
+                ) {
+                    newPasswordResponse.push("format-password-one");
+                }
+            } catch {
+                newPasswordResponse.push("format-password-one");
+            }
+
+            try {
+                if (
+                    !(newPassword.match(/([a-z])/g).join("").length >= 2 &&
+                    newPassword.match(/([A-Z])/g).join("").length >= 2 &&
+                    newPassword.match(/([0-9])/g).join("").length >= 2 &&
+                    newPassword.match(/([~!@#$%^&*()\-_=+[\]{};:,.<>/?\\|])/g).join("")
+                        .length >= 1 &&
+                    !newPassword.match(/([\s\b\n\t])/g) &&
+                    newPassword.length >= 8 &&
+                    newPassword.length <= 60)
+                ) {
+                    newPasswordResponse.push("format-password-two");
+                }
+            } catch {
+                newPasswordResponse.push("format-password-two");
+            }
+
+            if (newPassword !== newPasswordConfirmation) {
+                newPasswordResponse.push("match-password");
+            }
+        };
+
+        regexTest();
+
+        if (newPasswordResponse.length === 0) {
+            try {
+                const findGoodAccount = (await accountHandler.getOneAccount(mail))[0];
+                if (findGoodAccount) {
+                    if (bcrypt.compareSync(oldPassword, findGoodAccount.password_hashed)) {
+                        try {
+                            const result = (await accountHandler.changePassword(findGoodAccount.id, await bcrypt.hash(newPassword, salt)))[0];
+                            res.status(200).json(["change-password-success", result]);
+                        } catch (error) {
+                            res.status(500).json(["server-error"]);
+                        }
+                    } else {
+                        res.status(200).json(["wrong-password"]);
+                    }
+                } else {
+                    res.status(200).json(["mail-error"]);
+                }
+            } catch (error) {
+                res.status(500).json(["server-error"]);
+            }
+        } else {
+            res.status(200).json(newPasswordResponse);
         }
     },
 };
