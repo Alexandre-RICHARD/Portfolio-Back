@@ -54,6 +54,15 @@ const accountHandler = {
         const { rows } = await db.query(sql, parameters);
         return rows;
     },
+
+    async deleteAccount(mail) {
+        const sql = `
+            DELETE FROM user_register WHERE mail = $1
+        `;
+        const parameters = [mail];
+        const { rows } = await db.query(sql, parameters);
+        return rows;
+    },
 };
 
 module.exports = accountHandler;

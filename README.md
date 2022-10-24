@@ -190,3 +190,8 @@ Voici [le site](https://server.alexandre-richard.fr) en question
 -   Pour le changement d'adresse-mail : on vérifie les inputs, on trouve le bon compte, on compare le mot de passe, on s'assure qu'aucun compte n'existe avec la nouvelle adresse-mail et on modifie l'adresse originale
 -   Pour le changement de mot de passe : on vérifie les 3 mots de passe, si pas d'erreur, on trouve le bon compte, on compare le mot de passe, on change les informations et on envoie
 -   Création des 2 requêtes SQL pour la modification des infos dans la base de données
+
+### 0.9.44 `24 octobre 2022`
+
+-   Avec la même logique adaptée au cas présent, rajout de la route account/delete avec vérification des inputs, recherche du bon compte, comparaison de mot de passe et suppression si tout est ok
+-   Rajout de la requête SQL liée

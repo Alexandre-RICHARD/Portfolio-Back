@@ -255,6 +255,56 @@ const accountController = {
             res.status(200).json(newPasswordResponse);
         }
     },
+
+    deleteAccount: async (req, res) => {
+        const newPasswordResponse = [];
+        const { mail, deleteAccountPassword } = req.body;
+
+        const regexTest = () => {
+            try {
+                if (
+                    !(deleteAccountPassword.match(/([a-z])/g).join("").length >= 2 &&
+                    deleteAccountPassword.match(/([A-Z])/g).join("").length >= 2 &&
+                    deleteAccountPassword.match(/([0-9])/g).join("").length >= 2 &&
+                    deleteAccountPassword.match(/([~!@#$%^&*()\-_=+[\]{};:,.<>/?\\|])/g).join("")
+                        .length >= 1 &&
+                    !deleteAccountPassword.match(/([\s\b\n\t])/g) &&
+                    deleteAccountPassword.length >= 8 &&
+                    deleteAccountPassword.length <= 60)
+                ) {
+                    newPasswordResponse.push("format-password");
+                }
+            } catch {
+                newPasswordResponse.push("format-password");
+            }
+        };
+
+        regexTest();
+
+        if (newPasswordResponse.length === 0) {
+            try {
+                const findGoodAccount = (await accountHandler.getOneAccount(mail))[0];
+                if (findGoodAccount) {
+                    if (bcrypt.compareSync(deleteAccountPassword, findGoodAccount.password_hashed)) {
+                        try {
+                            await accountHandler.deleteAccount(mail);
+                            res.status(200).json(["delete-account-success"]);
+                        } catch (error) {
+                            res.status(500).json(["server-error"]);
+                        }
+                    } else {
+                        res.status(200).json(["wrong-password"]);
+                    }
+                } else {
+                    res.status(200).json(["mail-error"]);
+                }
+            } catch (error) {
+                res.status(500).json(["server-error"]);
+            }
+        } else {
+            res.status(200).json(newPasswordResponse);
+        }
+    },
 };
 
 module.exports = accountController;

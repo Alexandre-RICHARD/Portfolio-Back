@@ -24,6 +24,7 @@ router.post("/registration", accountController.registration);
 router.post("/connection", accountController.connection);
 router.patch("/account/change/mail", accountController.changeMail);
 router.patch("/account/change/password", accountController.changePassword);
+router.delete("/account/delete", accountController.deleteAccount);
 
 router.get("/chess/game/data", chessController.getChessGameData);
 router.get("/chess/board/reset", chessController.resetBoardData);
