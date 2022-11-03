@@ -195,3 +195,7 @@ Voici [le site](https://server.alexandre-richard.fr) en question
 
 -   Avec la même logique adaptée au cas présent, rajout de la route account/delete avec vérification des inputs, recherche du bon compte, comparaison de mot de passe et suppression si tout est ok
 -   Rajout de la requête SQL liée
+
+### 0.9.50 `3 novembre 2022`
+
+-   Changement dans l'objet envoyé pour getChessGameData. Rajout d'une valeur indiquand si oui ou non, les données sont prêtes.

@@ -13,9 +13,9 @@ const chessController = {
     getChessGameData: (req, res) => {
         try {
             if (Object.keys(chessController.gameData.boardData).length !== 0) {
-                res.status(200).json(chessController.gameData);
+                res.status(200).json({gameData: chessController.gameData, ready: true});
             } else {
-                res.status(200).json("L'objet gameData est vide");
+                res.status(200).json({ready: false});
             }
         } catch (error) {
             res.status(500).json(error.message);
