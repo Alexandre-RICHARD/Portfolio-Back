@@ -199,3 +199,8 @@ Voici [le site](https://server.alexandre-richard.fr) en question
 ### 0.9.50 `3 novembre 2022`
 
 -   Changement dans l'objet envoyé pour getChessGameData. Rajout d'une valeur indiquand si oui ou non, les données sont prêtes.
+
+### 1.0.0 `15 novembre 2022`
+
+-   Passage en 1.0 maintenant que j'ai commencé à postuler et que je pars du principe que mon objectif initial est atteind.
+-   Mise à jour des package NPM

@@ -1,6 +1,6 @@
 {
     "name": "tryhard-but-slowrun-back",
-    "version": "0.9.50",
+    "version": "1.0.0",
     "description": "Projet TryHard but SlowRun par Alexandre Richard. Projet à but auto-formatif.",
     "main": "index.js",
     "scripts": {
