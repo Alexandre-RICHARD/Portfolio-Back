@@ -204,3 +204,13 @@ Voici [le site](https://server.alexandre-richard.fr) en question
 
 -   Passage en 1.0 maintenant que j'ai commencé à postuler et que je pars du principe que mon objectif initial est atteind.
 -   Mise à jour des package NPM
+
+### 1.0.1 `26 décembre 2022`
+
+-   Ajout de la route servant à vérifier le mot de passe pour les tests d'allemand
+-   Ajout de la route pour gérer le compte du nombre de visite unique
+-   Changement des deux routes patch en post car elles ne fonctionnaient pas en prod
+-   GermanController, ce fichier sert juste à comparer le mot de passe reçu à l'aide d'un mot de passe hashé, même logique que les autres controlleurs
+-   Dans le globalController, ajout de la fonction pour gérer le nombre de visite. Utilisation d'un middleware (visitCounter).
+-   Si la date du jour a déjà une valeur de visite associée, alors on l'incrémente, sinon on la créée.
+-   Dans AccountController, changement du nom de la table utilisée pour correspondre au nouveau nom utilisé en BDD

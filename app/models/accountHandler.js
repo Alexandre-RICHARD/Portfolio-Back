@@ -4,7 +4,7 @@ const db = require("../database.js");
 const accountHandler = {
     async getOneAccount(mail) {
         const sql = `
-            SELECT * FROM user_register WHERE mail = $1
+            SELECT * FROM userdata WHERE mail = $1
         `;
 
         const parameters = [mail];
@@ -16,7 +16,7 @@ const accountHandler = {
     async registerNewUser(nickname, mail, password) {
         const sql = `
         INSERT INTO 
-            user_register 
+            userdata 
             (
                 nickname, 
                 mail, 
@@ -37,7 +37,7 @@ const accountHandler = {
 
     async changmail(id, mail) {
         const sql = `
-        UPDATE user_register SET mail = $2 WHERE id = $1
+        UPDATE userdata SET mail = $2 WHERE id = $1
         RETURNING nickname, mail;
         `;
         const parameters = [id, mail];
@@ -47,7 +47,7 @@ const accountHandler = {
 
     async changePassword(id, password) {
         const sql = `
-        UPDATE user_register SET password_hashed = $2 WHERE id = $1
+        UPDATE userdata SET password_hashed = $2 WHERE id = $1
         RETURNING nickname, mail;
         `;
         const parameters = [id, password];
@@ -57,7 +57,7 @@ const accountHandler = {
 
     async deleteAccount(mail) {
         const sql = `
-            DELETE FROM user_register WHERE mail = $1
+            DELETE FROM userdata WHERE mail = $1
         `;
         const parameters = [mail];
         const { rows } = await db.query(sql, parameters);

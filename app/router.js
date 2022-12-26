@@ -4,6 +4,7 @@ const router = Router();
 // On importe nos différents controllers
 const globalController = require("./controllers/globalController");
 const portfolioController = require("./controllers/portfolioController");
+const germanTestController = require("./controllers/germanTestController");
 const accountController = require("./controllers/accountController");
 const chessController = require("./controllers/chessController");
 
@@ -17,14 +18,17 @@ router.use((req, res, next) => {
 
 // On associe chaque duo de requêtes/méthodes à un controller et à une fonction
 router.get("/", globalController.test);
+router.get("/visit/counter/add", globalController.registerNewVisit);
 
 router.post("/contact", portfolioController.contactSendMail);
 
 router.post("/registration", accountController.registration);
 router.post("/connection", accountController.connection);
-router.patch("/account/change/mail", accountController.changeMail);
-router.patch("/account/change/password", accountController.changePassword);
+router.post("/account/change/mail", accountController.changeMail);
+router.post("/account/change/password", accountController.changePassword);
 router.delete("/account/delete", accountController.deleteAccount);
+
+router.post("/germanTest/connect", germanTestController.accessPassword);
 
 router.get("/chess/game/data", chessController.getChessGameData);
 router.get("/chess/board/reset", chessController.resetBoardData);
