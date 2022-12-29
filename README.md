@@ -214,3 +214,7 @@ Voici [le site](https://server.alexandre-richard.fr) en question
 -   Dans le globalController, ajout de la fonction pour gérer le nombre de visite. Utilisation d'un middleware (visitCounter).
 -   Si la date du jour a déjà une valeur de visite associée, alors on l'incrémente, sinon on la créée.
 -   Dans AccountController, changement du nom de la table utilisée pour correspondre au nouveau nom utilisé en BDD
+
+### 1.0.2 `29 décembre 2022`
+
+-   Mise à jour des packages
