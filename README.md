@@ -218,3 +218,7 @@ Voici [le site](https://server.alexandre-richard.fr) en question
 ### 1.0.2 `29 décembre 2022`
 
 -   Mise à jour des packages
+
+### 1.0.5 `30 janvier 2023`
+
+-   Mise à jour des packages
