@@ -1,7 +1,7 @@
 {
-    "name": "tryhard-but-slowrun-back",
-    "version": "1.1.0",
-    "description": "Projet TryHard but SlowRun par Alexandre Richard. Projet à but auto-formatif.",
+    "name": "portfolio-back",
+    "version": "1.1.4",
+    "description": "Portfolio d'Alexandre Richard. Projet à but auto-formatif.",
     "main": "index.js",
     "scripts": {
         "build": "rd /s /q .build & mkdir .build .build\\app & xcopy /y .\\index.js .\\.build & xcopy /y .\\package.json .\\.build & xcopy /y /s /q .\\app .\\.build\\app",
@@ -12,7 +12,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Alexandre-RICHARD/tryhard-but-slowrun-back.git"
+        "url": "git+https://github.com/Alexandre-RICHARD/Portfolio-Back.git"
     },
     "keywords": [],
     "author": "",

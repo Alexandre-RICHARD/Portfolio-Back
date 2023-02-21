@@ -1,4 +1,4 @@
-# TryHard but SlowRun - Le back
+# Portfolio - Le back
 
 Bonjour, bienvenue sur le répo de mon portfolio. J'y ai entreposé ma présentation, mon CV, mes projets ainsi que mes contacts. Tout mes projets présentés sont hébergés sur le même site.
 Il s'agit ici du back avec ci-dessous l'historique des version et leur détails.
@@ -226,3 +226,8 @@ Voici [le site](https://server.alexandre-richard.fr) en question
 ### 1.1.0 `18 février 2023`
 
 -   Mise à jour des packages
+
+### 1.1.4 `21 février 2023`
+
+-   Mise à jour des packages
+-   Changement de nom du projet, plus question de l'appeler tryhard but slowrun. C'est un peu nul comme nom, c'est simplement mon portfolio
