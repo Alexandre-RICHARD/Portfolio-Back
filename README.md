@@ -231,3 +231,7 @@ Voici [le site](https://server.alexandre-richard.fr) en question
 
 -   Mise à jour des packages
 -   Changement de nom du projet, plus question de l'appeler tryhard but slowrun. C'est un peu nul comme nom, c'est simplement mon portfolio
+
+### 1.1.5 `21 février 2023`
+
+-   
