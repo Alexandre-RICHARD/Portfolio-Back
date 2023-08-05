@@ -1,5 +1,7 @@
-.build
+.build/
 .vscode/
 data/
 node_modules/
 .env
+package-lock.json
+pnpm-lock.yaml

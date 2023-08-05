@@ -34,6 +34,8 @@ router.get("/chess/game/data", chessController.getChessGameData);
 router.get("/chess/board/reset", chessController.resetBoardData);
 router.post("/chess/move/verif", chessController.moveVerification);
 
+router.post("/contact/sendmail", portfolioController.contactSendMail);
+
 // Si aucune la requête n'est pas géré par le serveur, le router renvoit une 404 avec un message
 router.use((req, res) => {
     res.status(404).json("404 - Pas de route gérée par le serveur sur cette adresse");

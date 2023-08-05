@@ -232,6 +232,12 @@ Voici [le site](https://server.alexandre-richard.fr) en question
 -   Mise à jour des packages
 -   Changement de nom du projet, plus question de l'appeler tryhard but slowrun. C'est un peu nul comme nom, c'est simplement mon portfolio
 
-### 1.1.5 `21 février 2023`
+### 2.0.0 `5 août 2023`
 
--   
+-   Changement important dans la manière de gérer tous les projets et dissociation complète du versionning du back et du front
+-   Mise à jour des dépendances
+-   Ajout d'une commande start dans package.json
+-   Modification des commandes clean dans package.json
+-   Modification du .gitignore
+-   Début de test pour l'envoi d'un mail automatique à partir du formulaire de contact
+-   Note externe au projet sur les choses à faire, à améliorer, idées etc
