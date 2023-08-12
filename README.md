@@ -268,4 +268,8 @@ Voici [le serveur](http://server.rial7539.odns.fr/) en question
 -   Simplification de la regex pour la vérification de l'adresse-mail après avoir découvert que la précédente comptait invalide des adresse-mail valide.
 -   Retrait de certains console.log
 
+### 2.0.2 `13 août 2023`
+
+-   Très légère modification sur le package.json
+
 </details>
