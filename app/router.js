@@ -2,11 +2,12 @@ const { Router } = require("express");
 const router = Router();
 
 // On importe nos différents controllers
-const globalController = require("./controllers/globalController");
-const portfolioController = require("./controllers/portfolioController");
-const germanTestController = require("./controllers/germanTestController");
 const accountController = require("./controllers/accountController");
 const chessController = require("./controllers/chessController");
+const germanTestController = require("./controllers/germanTestController");
+const globalController = require("./controllers/globalController");
+const portfolioController = require("./controllers/portfolioController");
+const socketIoController = require("./controllers/socketIoController");
 
 let counter = 0;
 
@@ -35,6 +36,10 @@ router.get("/chess/board/reset", chessController.resetBoardData);
 router.post("/chess/move/verif", chessController.moveVerification);
 
 router.post("/contact/sendmail", portfolioController.contactSendMail);
+
+router.post("/register", socketIoController.oneMorePlayer);
+router.post("/disconnect", socketIoController.oneLessPlayer);
+router.post("/chatmessage", socketIoController.messageOnChat);
 
 // Si aucune la requête n'est pas géré par le serveur, le router renvoit une 404 avec un message
 router.use((req, res) => {

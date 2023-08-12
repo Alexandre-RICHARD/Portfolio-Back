@@ -15,13 +15,34 @@ const app = express();
 app.enable("trust proxy");
 // Utilisation de CORS
 app.use(cors());
+// Création du serveur à partir d'App pour pouvoir réutiliser le protocole HTTP
+const server = require("http").createServer(app);
+// Connection du server au package socket.io pour créer une instance d'écoute
+const io = require("socket.io")(server, {
+    cors: {
+        origin: [process.env.SOCKET_IO],
+    }
+});
+// Lien entre le serveur (contenant maintenant socket.io) et l'app
+app.set("socketio", io);
 // Utilisation de la Jsonification pour les réponse de requêtes
 app.use(express.json());
+
+app.use(express.urlencoded({
+    extended: true
+}));
 // Notre app utilisé le router
 app.use(router);
 
+// io.on("connection", (socket) => {
+// });
+
 // On démarre notre app
-const start = () => app.listen(PORT || 3000, () => {});
+const start = () => {
+    server.listen(PORT || 3000, () => {
+        console.log(`Notre serveur fonctionne bien sur le port ${PORT}.`);
+    });
+};
 
 module.exports = {
     start,

@@ -11,15 +11,12 @@ const portfolioController = {
             message: req.body.contactFormMessage,
         };
 
-        console.log(mailData);
-
         // Exécute le script PHP en tant que processus enfant
         const phpScript = spawn("php", ["../middlewares/sendMail.php", mailData.userName, mailData.mail, mailData.subject, mailData.message]);
 
         // Affiche la sortie du script PHP dans la console
-        phpScript.stdout.on("data", (data) => {
-            console.log(`stdout: ${data}`);
-        });
+        // phpScript.stdout.on("data", (data) => {
+        // });
 
         // Affiche les erreurs du script PHP dans la console
         phpScript.stderr.on("data", (data) => {
@@ -27,10 +24,10 @@ const portfolioController = {
         });
 
         // Termine le processus enfant lorsque le script PHP a fini de s'exécuter
-        phpScript.on("close", (code) => {
-            console.log(`Le script PHP a quitté avec le code ${code}`);
-            res.send("E-mail envoyé avec succès !");
-        });
+        // phpScript.on("close", (code) => {
+        // console.log(`Le script PHP a quitté avec le code ${code}`);
+        res.send("E-mail envoyé avec succès !");
+        // });
         
         // res.status(200).json("ok");
     }

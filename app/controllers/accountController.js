@@ -12,7 +12,7 @@ const accountController = {
 
         const regexTest = () => {
             if (
-                !mail.match(/^(^([a-z])+([a-z0-9]+)[.\-_]?)+[a-z0-9]+@(([a-z\-0-9])+([.]{1})?(([a-z\-0-9])+([.]{1})+[a-z]{2,}))$/gm)
+                !mail.match(/.+@.+\..+/gm)
             ) {
                 registerResponse.push("format-mail");
             }
@@ -76,7 +76,7 @@ const accountController = {
 
         const regexTest = () => {
             if (
-                !mail.match(/^(^([a-z])+([a-z0-9]+)[.\-_]?)+[a-z0-9]+@(([a-z\-0-9])+([.]{1})?(([a-z\-0-9])+([.]{1})+[a-z]{2,}))$/gm)
+                !mail.match(/.+@.+\..+/gm)
             ) {
                 loginResponse.push("format-mail");
             }
@@ -127,7 +127,7 @@ const accountController = {
 
         const regexTest = () => {
             if (
-                !newMail.match(/^(^([a-z])+([a-z0-9]+)[.\-_]?)+[a-z0-9]+@(([a-z\-0-9])+([.]{1})?(([a-z\-0-9])+([.]{1})+[a-z]{2,}))$/gm)
+                !newMail.match(/.+@.+\..+/gm)
             ) {
                 newMailResponse.push("format-mail");
             }

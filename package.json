@@ -1,11 +1,12 @@
 {
     "name": "portfolio-back",
-    "version": "1.1.5",
+    "version": "2.0.1",
     "description": "Portfolio d'Alexandre Richard. Projet à but auto-formatif.",
     "main": "index.js",
     "scripts": {
         "start": "nodemon",
         "build": "rd /s /q .build & mkdir .build .build\\app & xcopy /y .\\index.js .\\.build & xcopy /y .\\package.json .\\.build & xcopy /y /s /q .\\app .\\.build\\app",
+        "update": "pnpm up",
         "lint": "eslint ./*.js",
         "lint:fix": "eslint --fix ./*.js",
         "clean": "rd /s /q .build",
@@ -19,7 +20,7 @@
     "author": "",
     "license": "ISC",
     "devDependencies": {
-        "eslint": "^8.46.0"
+        "eslint": "^8.47.0"
     },
     "dependencies": {
         "bcryptjs": "^2.4.3",
@@ -27,6 +28,7 @@
         "cors": "^2.8.5",
         "dotenv": "^16.3.1",
         "express": "^4.18.2",
-        "pg": "^8.11.2"
+        "pg": "^8.11.2",
+        "socket.io": "^4.7.2"
     }
 }

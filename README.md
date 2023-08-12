@@ -1,11 +1,15 @@
 # Portfolio - Le back
 
-Bonjour, bienvenue sur le répo de mon portfolio. J'y ai entreposé ma présentation, mon CV, mes projets ainsi que mes contacts. Tout mes projets présentés sont hébergés sur le même site.
+Bonjour, bienvenue sur le côté serveur de mon portfolio. Contrairement au front ou chaque projet est séparé et héberger sur un sous-domaine différent, le serveur contient chaque réponse, route, requêtes et requêtes SQL de chaque projet.
 Il s'agit ici du back avec ci-dessous l'historique des version et leur détails.
 
-Voici [le site](https://server.alexandre-richard.fr) en question
+Voici [le serveur](http://server.rial7539.odns.fr/) en question
 
 ## Historique des version
+
+### Version 0
+
+<details>
 
 ### 0.0.1 `1er juillet 2022`
 
@@ -200,6 +204,12 @@ Voici [le site](https://server.alexandre-richard.fr) en question
 
 -   Changement dans l'objet envoyé pour getChessGameData. Rajout d'une valeur indiquand si oui ou non, les données sont prêtes.
 
+</details>
+
+### Version 1
+
+<details>
+
 ### 1.0.0 `15 novembre 2022`
 
 -   Passage en 1.0 maintenant que j'ai commencé à postuler et que je pars du principe que mon objectif initial est atteind.
@@ -232,6 +242,12 @@ Voici [le site](https://server.alexandre-richard.fr) en question
 -   Mise à jour des packages
 -   Changement de nom du projet, plus question de l'appeler tryhard but slowrun. C'est un peu nul comme nom, c'est simplement mon portfolio
 
+</details>
+
+### Version 2
+
+<details>
+
 ### 2.0.0 `5 août 2023`
 
 -   Changement important dans la manière de gérer tous les projets et dissociation complète du versionning du back et du front
@@ -241,3 +257,15 @@ Voici [le site](https://server.alexandre-richard.fr) en question
 -   Modification du .gitignore
 -   Début de test pour l'envoi d'un mail automatique à partir du formulaire de contact
 -   Note externe au projet sur les choses à faire, à améliorer, idées etc
+
+### 2.0.1 `12 août 2023`
+
+-   Mise à jour des packages npm
+-   Rajout d'un script pnpm pour mettre à jour plus facilement les dépendances
+-   Simplification de la variable d'environnement pour la connection à la base de données dans database.js. Elle se fait maintenant avec juste la variable pg_url complète
+-   Rajout des routes pour la transmission des messages en direct du projet Catan.
+-   Plus globalement, réunification du back pendant que je fragmente le front. Je fais ça car je ne cherche pas plus que ça à apprendre plus de langage back, je vais approfondir express et node.js. Par contre, je veux approfondir pleins de choses mais en découvrir d'autres en front d'ou cette idée de séparer les projets en les gardant lié par le serveur.
+-   Simplification de la regex pour la vérification de l'adresse-mail après avoir découvert que la précédente comptait invalide des adresse-mail valide.
+-   Retrait de certains console.log
+
+</details>
