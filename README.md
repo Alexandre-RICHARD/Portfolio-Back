@@ -274,6 +274,9 @@ Voici [le serveur](http://server.rial7539.odns.fr/) en question
 
 ### 2.0.3 `15 août 2023`
 
--   
+-   Suppression du script php qui n'était pas du tout nécessaire
+-   Supression du package child_process inutilisé
+-   Ajout du package NPM nodemailer
+-   Configuration de l'envoi de mail automatique à partir de nodemailer, pas encore en prod car trop de possibilité de spam pour le moment.
 
 </details>
