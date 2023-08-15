@@ -1,9 +1,20 @@
-// const sendMail = require("../middlewares/sendMail");
-const { spawn } = require("child_process");
+const { createTransport } = require("nodemailer");
 
-// Fonctionnement pas fonctionnel... donc fichier abandonné pour l'instant
+const transporter = createTransport({
+    host: "smtp-mail.outlook.com",
+    secureConnection: false,
+    port: 587,
+    tls: {
+        ciphers: "SSLv3"
+    },
+    auth: {
+        user: process.env.MAIL_SENDER_USER,
+        pass: process.env.MAIL_SENDER_PASS,
+    }
+});
+
 const portfolioController = {
-    contactSendMail: (req, res) => { //! TEMPORAIRE
+    contactSendMail: (req, res) => {
         const mailData = {
             userName: req.body.contactFormName,
             mail: req.body.contactFormMail,
@@ -11,32 +22,35 @@ const portfolioController = {
             message: req.body.contactFormMessage,
         };
 
-        // Exécute le script PHP en tant que processus enfant
-        const phpScript = spawn("php", ["../middlewares/sendMail.php", mailData.userName, mailData.mail, mailData.subject, mailData.message]);
+        const mailOptions = {
+            from: process.env.MAIL_SENDER_USER,
+            to: process.env.MAIL_RECEIVER,
+            subject: `AUTO - ${mailData.userName} - ${mailData.subject}`,
+            text: `
+            MAIL AUTOMATISÉ DEPUIS MON SITE
 
-        // Affiche la sortie du script PHP dans la console
-        // phpScript.stdout.on("data", (data) => {
-        // });
+            Envoyé par ${mailData.userName}
+            Son adresse-mail est ${mailData.mail}
 
-        // Affiche les erreurs du script PHP dans la console
-        phpScript.stderr.on("data", (data) => {
-            console.error(`stderr: ${data}`);
-        });
+            ${mailData.message}
+            `
+        };
 
-        // Termine le processus enfant lorsque le script PHP a fini de s'exécuter
-        // phpScript.on("close", (code) => {
-        // console.log(`Le script PHP a quitté avec le code ${code}`);
-        res.send("E-mail envoyé avec succès !");
-        // });
+        try {
+            res.status(200).json("Mail envoyé");
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    console.log(error);
+                } else {
+                    console.log("Envoyé");
+                    console.log(info.response);
+                }
+            });
+        } catch (error) {
+            res.status(500).json(error.message);
+        }
         
-        // res.status(200).json("ok");
     }
-
-
-
-
-
-
 };
 
 module.exports = portfolioController;

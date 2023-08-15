@@ -1,6 +1,6 @@
 {
     "name": "portfolio-back",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "description": "Portfolio d'Alexandre Richard. Projet à but auto-formatif.",
     "main": "index.js",
     "scripts": {
@@ -22,10 +22,10 @@
     },
     "dependencies": {
         "bcryptjs": "^2.4.3",
-        "child_process": "^1.0.2",
         "cors": "^2.8.5",
         "dotenv": "^16.3.1",
         "express": "^4.18.2",
+        "nodemailer": "^6.9.4",
         "pg": "^8.11.2",
         "socket.io": "^4.7.2"
     }

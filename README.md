@@ -272,4 +272,8 @@ Voici [le serveur](http://server.rial7539.odns.fr/) en question
 
 -   Très légère modification sur le package.json
 
+### 2.0.3 `15 août 2023`
+
+-   
+
 </details>
