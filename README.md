@@ -3,7 +3,9 @@
 Bonjour, bienvenue sur le côté serveur de mon portfolio. Contrairement au front ou chaque projet est séparé et héberger sur un sous-domaine différent, le serveur contient chaque réponse, route, requêtes et requêtes SQL de chaque projet.
 Il s'agit ici du back avec ci-dessous l'historique des version et leur détails.
 
-Voici [le serveur](http://server.rial7539.odns.fr/) en question
+Voici [le serveur](https://server.alexandre-richard.fr/) en question
+Et [son répo](https://github.com/Alexandre-RICHARD/Portfolio-Back)
+
 
 ## Historique des version
 
@@ -278,5 +280,10 @@ Voici [le serveur](http://server.rial7539.odns.fr/) en question
 -   Supression du package child_process inutilisé
 -   Ajout du package NPM nodemailer
 -   Configuration de l'envoi de mail automatique à partir de nodemailer, pas encore en prod car trop de possibilité de spam pour le moment.
+
+### 2.0.4 `21 août 2023`
+
+-   Maintenant que j'ai récupéré le nom de domaine, actualisation de tous les liens sortant
+-   Mise à jour des packages npm
 
 </details>
