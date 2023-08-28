@@ -39,9 +39,7 @@ app.use(router);
 
 // On démarre notre app
 const start = () => {
-    server.listen(PORT || 3000, () => {
-        console.log(`Notre serveur fonctionne bien sur le port ${PORT}.`);
-    });
+    server.listen(PORT || 3000);
 };
 
 module.exports = {

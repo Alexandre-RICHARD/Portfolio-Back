@@ -43,14 +43,14 @@ const genshinController = {
             const { uuid, data_type } = req.body;
             const userId = await genshinController.getUserId(uuid);
             const result = await genshinHandler.getOneData(userId[0].id, data_type);
-            res.status(200).json(result[0].data_string);
+            res.status(200).json(result);
         } catch (error) {
             res.status(500).json(error.message);
         }
     },
 
     saveOneData: async (req, res) => {
-        const refDateType = ["characters", "weapons", "materials", "options", "test"];
+        const refDateType = ["genshinCharactersData", "genshinWeaponsData", "genshinMaterialsData", "genshinOptionsData"];
         const { uuid, data_type, data_string } = req.body;
         if (refDateType.indexOf(data_type) < 0) {
             res.status(406).json("Type de donnée erronnée, êtes-vous en train de faire n'importe quoi ?");

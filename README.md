@@ -286,7 +286,7 @@ Et [son répo](https://github.com/Alexandre-RICHARD/Portfolio-Back)
 -   Maintenant que j'ai récupéré le nom de domaine, actualisation de tous les liens sortant
 -   Mise à jour des packages npm
 
-### 2.0.5 `22 août 2023`
+### 2.0.5 `28 août 2023`
 
 -   Mise à jour des packages npm
 -   Rajout du package uuid pour la gestion des identifiants uniques
@@ -296,5 +296,11 @@ Et [son répo](https://github.com/Alexandre-RICHARD/Portfolio-Back)
 -   Création du controller exprès pour Genshin.
 -   Il contient 5 méthode : Générer un Uuid pour un nouveau utilisateur ; Se loger avec un déjà existant ; Obtenir l'id d'un user ; Obtenir un type de données ; Sauvegarder un type de données
 -   Rajout des models SQL correspondant avec mise en place de 2 nouvelles tables dans la base de données
+
+### 2.0.6 `28 août 2023`
+
+-   Suppression du console.log au démarrage du serveur
+-   Adaptation des bons nom de data_type possible dans SaveOneDate
+-   Changement dans la manière de renvoyer les données dans GetOneData
 
 </details>
