@@ -4,7 +4,7 @@ const router = Router();
 // On importe nos différents controllers
 const accountController = require("./controllers/accountController");
 const chessController = require("./controllers/chessController");
-const germanTestController = require("./controllers/germanTestController");
+const genshinController = require("./controllers/genshinController");
 const globalController = require("./controllers/globalController");
 const portfolioController = require("./controllers/portfolioController");
 const socketIoController = require("./controllers/socketIoController");
@@ -29,7 +29,10 @@ router.post("/account/change/mail", accountController.changeMail);
 router.post("/account/change/password", accountController.changePassword);
 router.delete("/account/delete", accountController.deleteAccount);
 
-router.post("/germanTest/connect", germanTestController.accessPassword);
+router.get("/genshin/generate-uuid", genshinController.generateUuid);
+router.post("/genshin/login", genshinController.loginWithUuid);
+router.post("/genshin/getData", genshinController.getOneData);
+router.post("/genshin/saveData", genshinController.saveOneData);
 
 router.get("/chess/game/data", chessController.getChessGameData);
 router.get("/chess/board/reset", chessController.resetBoardData);

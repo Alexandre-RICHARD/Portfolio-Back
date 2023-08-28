@@ -42,7 +42,6 @@ const portfolioController = {
                 if (error) {
                     console.log(error);
                 } else {
-                    console.log("Envoyé");
                     console.log(info.response);
                 }
             });

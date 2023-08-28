@@ -286,4 +286,15 @@ Et [son répo](https://github.com/Alexandre-RICHARD/Portfolio-Back)
 -   Maintenant que j'ai récupéré le nom de domaine, actualisation de tous les liens sortant
 -   Mise à jour des packages npm
 
+### 2.0.5 `22 août 2023`
+
+-   Mise à jour des packages npm
+-   Rajout du package uuid pour la gestion des identifiants uniques
+-   Suppression de toute la logique utilisé pour le vieux système de mot de passe sur le test des verbes en allemand
+-   Rajout de 4 routes gérées par le serveur en rapport avec le projet Genshin
+-   Suppression de 2 consoles.log
+-   Création du controller exprès pour Genshin.
+-   Il contient 5 méthode : Générer un Uuid pour un nouveau utilisateur ; Se loger avec un déjà existant ; Obtenir l'id d'un user ; Obtenir un type de données ; Sauvegarder un type de données
+-   Rajout des models SQL correspondant avec mise en place de 2 nouvelles tables dans la base de données
+
 </details>

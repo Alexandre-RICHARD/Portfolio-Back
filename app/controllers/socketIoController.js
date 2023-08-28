@@ -17,7 +17,6 @@ const socketIoController = {
     oneLessPlayer: (req, res) => {
         try {
             const io = req.app.get("socketio");
-            // console.log(`ID : ${req.body.socketId} -> OUT`);
             delete socketIoController.playerList[req.body.socketId];
             io.emit("playerList", Object.values(socketIoController.playerList));
             return res.status(200);

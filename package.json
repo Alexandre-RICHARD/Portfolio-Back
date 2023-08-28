@@ -1,6 +1,6 @@
 {
     "name": "portfolio-back",
-    "version": "2.0.4",
+    "version": "2.0.5",
     "description": "Portfolio d'Alexandre Richard. Projet à but auto-formatif.",
     "main": "index.js",
     "scripts": {
@@ -18,7 +18,7 @@
     },
     "license": "ISC",
     "devDependencies": {
-        "eslint": "^8.47.0"
+        "eslint": "^8.48.0"
     },
     "dependencies": {
         "bcryptjs": "^2.4.3",
@@ -27,6 +27,7 @@
         "express": "^4.18.2",
         "nodemailer": "^6.9.4",
         "pg": "^8.11.3",
-        "socket.io": "^4.7.2"
+        "socket.io": "^4.7.2",
+        "uuid": "^9.0.0"
     }
 }
