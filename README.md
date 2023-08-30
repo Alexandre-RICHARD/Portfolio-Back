@@ -303,4 +303,10 @@ Et [son répo](https://github.com/Alexandre-RICHARD/Portfolio-Back)
 -   Adaptation des bons nom de data_type possible dans SaveOneDate
 -   Changement dans la manière de renvoyer les données dans GetOneData
 
+### 2.0.7 `30 août 2023`
+
+-   Rajout de la route gérant la destruction pour réinitialisation des données genshin d'un user
+-   Rajout de la fonction du controller correspondant, avec la même base que saveOneData
+-   Rajout du model lui aussi très ressemblant.
+
 </details>

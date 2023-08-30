@@ -25,7 +25,6 @@ const genshinHandler = {
             SELECT id FROM user_uuid WHERE user_uuid = $1
         `;
         const parameters = [uuid];
-
         const { rows } = await db.query(sql, parameters);
         return rows;
     },
@@ -38,7 +37,6 @@ const genshinHandler = {
             AND data_type = $2
         `;
         const parameters = [id, data_type];
-
         const { rows } = await db.query(sql, parameters);
         return rows;
     },
@@ -51,7 +49,17 @@ const genshinHandler = {
             SET data_string = EXCLUDED.data_string;
         `;
         const parameters = [id, data_type, data_string];
+        const { rows } = await db.query(sql, parameters);
+        return rows;
+    },
 
+    async deleteOneData(id, data_type) {
+        const sql = `
+            DELETE FROM genshin_data
+            WHERE user_id = $1
+            AND data_type = $2
+        `;
+        const parameters = [id, data_type];
         const { rows } = await db.query(sql, parameters);
         return rows;
     },

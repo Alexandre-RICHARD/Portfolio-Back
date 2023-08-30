@@ -65,6 +65,17 @@ const genshinController = {
             
         }
     },
+
+    deleteOneData: async (req, res) => {
+        const { uuid, data_type } = req.body;
+        try {
+            const userId = await genshinController.getUserId(uuid);
+            await genshinHandler.deleteOneData(userId[0].id, data_type);
+            res.status(200).json("Done");
+        } catch (error) {
+            res.status(500).json(["server-error"]);
+        }
+    }
 };
 
 module.exports = genshinController;
