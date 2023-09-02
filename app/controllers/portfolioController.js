@@ -1,4 +1,5 @@
 const { createTransport } = require("nodemailer");
+const mailHandler = require("../models/mailHandler");
 
 const transporter = createTransport({
     host: "smtp-mail.outlook.com",
@@ -14,12 +15,12 @@ const transporter = createTransport({
 });
 
 const portfolioController = {
-    contactSendMail: (req, res) => {
+    contactSendMail: async (req, res) => {
         const mailData = {
-            userName: req.body.contactFormName,
-            mail: req.body.contactFormMail,
-            subject: req.body.contactFormSubject,
-            message: req.body.contactFormMessage,
+            userName: req.body.name,
+            mail: req.body.mail,
+            subject: req.body.subject,
+            message: req.body.message,
         };
 
         const mailOptions = {
@@ -37,6 +38,7 @@ const portfolioController = {
         };
 
         try {
+            await mailHandler.saveOneMessage(mailData);
             res.status(200).json("Mail envoyé");
             transporter.sendMail(mailOptions, (error, info) => {
                 if (error) {

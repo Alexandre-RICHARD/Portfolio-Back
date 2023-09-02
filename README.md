@@ -309,4 +309,9 @@ Et [son répo](https://github.com/Alexandre-RICHARD/Portfolio-Back)
 -   Rajout de la fonction du controller correspondant, avec la même base que saveOneData
 -   Rajout du model lui aussi très ressemblant.
 
+### 2.0.8 `2 septembre 2023`
+
+-   Rajout d'un appel à la base de données dans portfolioController afin que, quand un message est reçu afin d'être envoyé par mail, il soit aussi stocké base de donnée en cas de problème de mail.
+-   Ainsi, création d'un mailHandler comme models.
+
 </details>
