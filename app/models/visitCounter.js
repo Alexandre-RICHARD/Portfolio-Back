@@ -2,45 +2,29 @@ const db = require("../database.js");
 
 // Notre fichier qui est appelé par le account controller chargé de faire les requêtes liées
 const accountHandler = {
-    async getOneDay(date) {
-        const sql = `
-            SELECT * FROM visits WHERE date = TO_DATE($1, 'DD/MM/YYYY')
-        `;
-
-        const parameters = [date];
-
-        const { rows } = await db.query(sql, parameters);
-        return rows;
+    async getOneDay(target, today) {
+        return await db.query(`
+        SELECT * FROM visits
+        WHERE target = $1
+        AND date = $2
+        `, [target, today]);
     },
 
-    async insertNewDay(date, counter) {
-        const sql = `
-        INSERT INTO 
-        visits 
-            (
-                date, 
-                counter
-            )
-            VALUES
-            (
-                TO_DATE($1, 'DD/MM/YYYY'),
-                $2
-            )
-            RETURNING date, counter;
-        `;
-        const parameters = [date, counter];
-        const { rows } = await db.query(sql, parameters);
-        return rows;
+    async incrementeVisits(target, today) {
+        await db.query(`
+        UPDATE visits
+        SET counter = counter + 1
+        WHERE target = $1
+        AND date = $2
+        `, [target, today]);
     },
 
-    async updateCurrentDay(date, counter) {
-        const sql = `
-        UPDATE visits SET counter = $2 WHERE date = TO_DATE($1, 'DD/MM/YYYY')
-        RETURNING date, counter;
-        `;
-        const parameters = [date, counter];
-        const { rows } = await db.query(sql, parameters);
-        return rows;
+    async newDayVisits(target, today) {
+        await db.query(`
+        INSERT INTO visits
+        (target, date, counter)
+        VALUES ($1, $2, 1)
+        `, [target, today]);
     },
 };
 

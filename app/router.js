@@ -19,7 +19,7 @@ router.use((req, res, next) => {
 
 // On associe chaque duo de requêtes/méthodes à un controller et à une fonction
 router.get("/", globalController.test);
-router.get("/visit/counter/add", globalController.registerNewVisit);
+router.post("/visit/counter/add", globalController.handleVisit);
 
 router.post("/contact", portfolioController.contactSendMail);
 
@@ -35,6 +35,7 @@ router.post("/genshin/getData", genshinController.getOneData);
 router.post("/genshin/saveData", genshinController.saveOneData);
 router.delete("/genshin/delete", genshinController.deleteOneData);
 router.delete("/genshin/delete/user", genshinController.deleteOneUser);
+router.post("/genshin/visit/counter/add", globalController.handleVisit);
 
 router.get("/chess/game/data", chessController.getChessGameData);
 router.get("/chess/board/reset", chessController.resetBoardData);

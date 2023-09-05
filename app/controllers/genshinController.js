@@ -85,7 +85,7 @@ const genshinController = {
         } catch (error) {
             res.status(500).json(["server-error"]);
         }
-    }
+    },
 };
 
 module.exports = genshinController;

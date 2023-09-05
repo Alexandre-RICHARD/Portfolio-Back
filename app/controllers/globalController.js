@@ -14,22 +14,33 @@ const globalController = {
         });
     },
 
-    registerNewVisit: async (req, res) => {
+    async handleVisit(req, res) {
+        console.log("Pourtant si");
         try {
-            const date = new Date(Date.now());
-            const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
-            const result = await visitCounter.getOneDay(formattedDate);
-            let response = null;
-            if (result.length === 0) {
-                response = await visitCounter.insertNewDay(formattedDate, 1);
+            // Récupérer la valeur target du req.body
+            const { target } = req.body;
+      
+            // Obtenir la date d'aujourd'hui au format JJ/MM/YY
+            const today = new Date().toLocaleDateString("fr-FR");
+      
+            // Rechercher une ligne dans la table "visit"
+            const result = await visitCounter.getOneDay(target, today);
+      
+            if (result.rowCount >= 1) {
+            // Si une ligne existe, incrémenter le compteur
+                await visitCounter.incrementeVisits(target, today);
             } else {
-                response = await visitCounter.updateCurrentDay(formattedDate, result[0].counter += 1);
+            // Si aucune ligne n'existe, créer une nouvelle entrée avec le compteur à 1
+                await visitCounter.newDayVisits(target, today);
             }
-            res.status(200).json(response);
+      
+            // Répondre avec un message de succès
+            res.status(200).json({ message: "Incrémentation réussie" });
         } catch (error) {
-            res.status(500).json(error.message);
+            console.error("Erreur:", error);
+            res.status(500).json({ message: "Erreur serveur" });
         }
-    },
+    }
 };
 
 module.exports = globalController;

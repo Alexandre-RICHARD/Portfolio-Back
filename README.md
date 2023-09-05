@@ -319,4 +319,10 @@ Et [son répo](https://github.com/Alexandre-RICHARD/Portfolio-Back)
 -   Rajout d'une route pour gérer correctement la suppression d'un utilisateur de l'outil Genshin en plus de ses données
 -   Rajout de la méthode du controller approprié pour ainsi que la requête SQL
 
+### 2.0.10 `6 septembre 2023`
+
+-   Ajout d'une nouvelle route pour gérer les visites du portfolio comme avant mais aussi celle du calculateur Genshin avec une différenciation entre les deux
+-   Amélioration et concision des requêtes SQL liées
+-   Refonte de la partie de Global Controller qui gère ça pour s'adpater à ce nouveau besoin
+
 </details>
