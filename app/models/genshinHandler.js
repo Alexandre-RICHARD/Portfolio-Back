@@ -63,6 +63,16 @@ const genshinHandler = {
         const { rows } = await db.query(sql, parameters);
         return rows;
     },
+
+    async deleteOneUser(uuid) {
+        const sql = `
+            DELETE FROM user_uuid
+            WHERE user_uuid = $1
+        `;
+        const parameters = [uuid];
+        const { rows } = await db.query(sql, parameters);
+        return rows;
+    },
 };
 
 module.exports = genshinHandler;

@@ -34,6 +34,7 @@ router.post("/genshin/login", genshinController.loginWithUuid);
 router.post("/genshin/getData", genshinController.getOneData);
 router.post("/genshin/saveData", genshinController.saveOneData);
 router.delete("/genshin/delete", genshinController.deleteOneData);
+router.delete("/genshin/delete/user", genshinController.deleteOneUser);
 
 router.get("/chess/game/data", chessController.getChessGameData);
 router.get("/chess/board/reset", chessController.resetBoardData);

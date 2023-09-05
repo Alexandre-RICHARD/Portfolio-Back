@@ -314,4 +314,9 @@ Et [son répo](https://github.com/Alexandre-RICHARD/Portfolio-Back)
 -   Rajout d'un appel à la base de données dans portfolioController afin que, quand un message est reçu afin d'être envoyé par mail, il soit aussi stocké base de donnée en cas de problème de mail.
 -   Ainsi, création d'un mailHandler comme models.
 
+### 2.0.9 `5 septembre 2023`
+
+-   Rajout d'une route pour gérer correctement la suppression d'un utilisateur de l'outil Genshin en plus de ses données
+-   Rajout de la méthode du controller approprié pour ainsi que la requête SQL
+
 </details>

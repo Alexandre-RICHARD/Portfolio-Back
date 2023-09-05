@@ -75,6 +75,16 @@ const genshinController = {
         } catch (error) {
             res.status(500).json(["server-error"]);
         }
+    },
+
+    deleteOneUser: async (req, res) => {
+        const { uuid } = req.body;
+        try {
+            await genshinHandler.deleteOneUser(uuid);
+            res.status(200).json("Done");
+        } catch (error) {
+            res.status(500).json(["server-error"]);
+        }
     }
 };
 
