@@ -325,4 +325,8 @@ Et [son répo](https://github.com/Alexandre-RICHARD/Portfolio-Back)
 -   Amélioration et concision des requêtes SQL liées
 -   Refonte de la partie de Global Controller qui gère ça pour s'adpater à ce nouveau besoin
 
+### 2.0.11 `7 octobre 2023`
+
+-   Mise à jour des packages npm
+
 </details>
