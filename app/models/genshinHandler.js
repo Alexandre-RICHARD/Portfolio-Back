@@ -4,8 +4,8 @@ const db = require("../database.js");
 const genshinHandler = {
     async registerUuid(uuid) {
         const sql = `
-        INSERT INTO 
-            user_uuid 
+        INSERT INTO
+            user_uuid
             (
                 user_uuid
             )

@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const salt = bcrypt.genSaltSync(10);
 
 // Les données venant du front vont venir subir les mêmes tests regex qu'en front. Ceci afin d'être sûr que l'utilisateur n'a pas modifié le code front. Et si on vérifie en front d'abord, c'est pour limiter les requêtes inutiles et donc de saturer le serveur
-//  Le fonctionnement est similaire pour les deux fonctions. On créer une variable inputError pour chaque valeur. On le test exactement comme en front. Si l'input passe le test, il est ok, sinon on inscrit une erreur commune.
+// Le fonctionnement est similaire pour les deux fonctions. On créer une variable inputError pour chaque valeur. On le test exactement comme en front. Si l'input passe le test, il est ok, sinon on inscrit une erreur commune.
 // A la fin, on vérifie si tous les résultats de tests sont ok, si oui, on envoi les données dans les models pour utilisation en BDD
 const accountController = {
     registration: async (req, res) => {
@@ -16,7 +16,7 @@ const accountController = {
             ) {
                 registerResponse.push("format-mail");
             }
-    
+
             if (
                 !(!nickname.match(/[^0-9a-zA-Z-_]/gm) &&
                 nickname.length >= 3 &&
@@ -24,7 +24,7 @@ const accountController = {
             ) {
                 registerResponse.push("format-nickname");
             }
-    
+
             try {
                 if (
                     !(password.match(/([a-z])/g).join("").length >= 2 &&
@@ -41,7 +41,7 @@ const accountController = {
             } catch {
                 registerResponse.push("format-password");
             }
-    
+
             if (password !== passwordConfirmation) {
                 registerResponse.push("match-password");
             }
@@ -80,7 +80,7 @@ const accountController = {
             ) {
                 loginResponse.push("format-mail");
             }
-    
+
             try {
                 if (
                     !(password.match(/([a-z])/g).join("").length >= 2 &&
@@ -135,7 +135,7 @@ const accountController = {
             if (newMail !== newMailConfirmation) {
                 newMailResponse.push("match-mail");
             }
-    
+
             try {
                 if (
                     !(password.match(/([a-z])/g).join("").length >= 2 &&
@@ -164,7 +164,7 @@ const accountController = {
                         try {
                             if (!(await accountHandler.getOneAccount(newMail))[0]) {
                                 const result = (await accountHandler.changmail(findGoodAccount.id, newMail))[0];
-                                res.status(200).json(["change-mail-success", result]);          
+                                res.status(200).json(["change-mail-success", result]);
                             } else {
                                 res.status(200).json(["account-already-exist"]);
                             }

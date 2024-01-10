@@ -4,7 +4,7 @@ const saveMove = require("../middlewares/saveMove");
 
 // Notre controller chess, qui récupère toutes les requêtes liées
 const chessController = {
-    //  On créé l'objet gameData qui contient toutes les informations nécessaires aux jeu d'échecs
+    // On créé l'objet gameData qui contient toutes les informations nécessaires aux jeu d'échecs
     gameData: {
         boardData: [],
     },

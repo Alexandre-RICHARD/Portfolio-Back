@@ -1,3 +1,9 @@
+# ⚠️⚠️⚠️⚠️⚠️
+
+## Ce projet est à l'arrêt. Bien qu'avancé à un stade quasi fini, il pourrait être amélioré mais je me concentre sur d'autre projet. Il est cependant fonctionnel.
+
+# ⚠️⚠️⚠️⚠️⚠️
+
 # Portfolio - Le back
 
 Bonjour, bienvenue sur le côté serveur de mon portfolio. Contrairement au front ou chaque projet est séparé et héberger sur un sous-domaine différent, le serveur contient chaque réponse, route, requêtes et requêtes SQL de chaque projet.

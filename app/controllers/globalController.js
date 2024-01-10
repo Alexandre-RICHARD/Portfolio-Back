@@ -19,13 +19,13 @@ const globalController = {
         try {
             // Récupérer la valeur target du req.body
             const { target } = req.body;
-      
+
             // Obtenir la date d'aujourd'hui au format JJ/MM/YY
             const today = new Date().toLocaleDateString("fr-FR");
-      
+
             // Rechercher une ligne dans la table "visit"
             const result = await visitCounter.getOneDay(target, today);
-      
+
             if (result.rowCount >= 1) {
             // Si une ligne existe, incrémenter le compteur
                 await visitCounter.incrementeVisits(target, today);
@@ -33,7 +33,7 @@ const globalController = {
             // Si aucune ligne n'existe, créer une nouvelle entrée avec le compteur à 1
                 await visitCounter.newDayVisits(target, today);
             }
-      
+
             // Répondre avec un message de succès
             res.status(200).json({ message: "Incrémentation réussie" });
         } catch (error) {

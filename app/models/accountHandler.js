@@ -15,11 +15,11 @@ const accountHandler = {
 
     async registerNewUser(nickname, mail, password) {
         const sql = `
-        INSERT INTO 
-            userdata 
+        INSERT INTO
+            userdata
             (
-                nickname, 
-                mail, 
+                nickname,
+                mail,
                 password_hashed
             )
             VALUES
