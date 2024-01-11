@@ -5,12 +5,12 @@
     "main": "index.js",
     "scripts": {
         "start": "nodemon",
-        "build": "rd /s /q .build & mkdir .build .build\\app & xcopy /y .\\index.js .\\.build & xcopy /y .\\package.json .\\.build & xcopy /y /s /q .\\app .\\.build\\app",
+        "build": "rd /s /q build & mkdir build build\\app & xcopy /y .\\index.js .\\build & xcopy /y .\\package.json .\\build & xcopy /y /s /q .\\app .\\build\\app",
         "update": "pnpm up",
         "lint": "eslint ./*.js",
         "lint:fix": "eslint --fix ./*.js",
-        "clean": "rd /s /q .build",
-        "clean:all": "rd /s /q node_modules .build & rd /s /q .build & del /q package-lock.json & del /q pnpm-lock.yaml"
+        "clean": "rd /s /q build",
+        "clean:all": "rd /s /q node_modules build & rd /s /q build & del /q package-lock.json & del /q pnpm-lock.yaml"
     },
     "repository": {
         "type": "git",
