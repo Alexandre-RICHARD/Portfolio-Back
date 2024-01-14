@@ -6,11 +6,11 @@
     "scripts": {
         "start": "nodemon",
         "build": "rd /s /q build & mkdir build build\\app & xcopy /y .\\index.js .\\build & xcopy /y .\\package.json .\\build & xcopy /y /s /q .\\app .\\build\\app",
-        "update": "pnpm up",
+        "update": "pnpm update || yarn upgrade || npm update",
         "lint": "eslint ./*.js",
         "lint:fix": "eslint --fix ./*.js",
-        "clean": "rd /s /q build",
-        "clean:all": "rd /s /q node_modules build"
+        "clean": "rd /s /q build 2> nul || rm -rf build",
+        "clean:all": "rd /s /q build node_modules 2> nul || rm -rf build node_modules"
     },
     "repository": {
         "type": "git",
