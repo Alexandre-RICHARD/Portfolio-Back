@@ -49,7 +49,7 @@ router.post("/chatmessage", socketIoController.messageOnChat);
 
 // Si aucune la requête n'est pas géré par le serveur, le router renvoit une 404 avec un message
 router.use((req, res) => {
-    res.status(404).json("404 - Pas de route gérée par le serveur sur cette adresse");
+    res.status(404).json(`Cette route (${req.originalUrl}) n'est pas gérée par le serveur.`);
 });
 
 module.exports = router;
