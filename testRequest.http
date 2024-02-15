@@ -103,7 +103,7 @@ GET {{baseUrl}}/visit/counter/add
 
 
 
-### * Route GET Ajouer 1 au compteur de visite
+### * Envoie de mail
 POST {{baseUrl}}/contact/sendmail HTTP/1.1
 Content-Type: application/json
 

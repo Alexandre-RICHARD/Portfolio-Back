@@ -9,8 +9,8 @@
         "update": "pnpm update || yarn upgrade || npm update",
         "lint": "eslint ./*.js",
         "lint:fix": "eslint --fix ./*.js",
-        "clean": "rd /s /q build 2> nul || rm -rf build",
-        "clean:all": "rd /s /q build node_modules 2> nul || rm -rf build node_modules"
+        "clean": "rd /s /q build || rm -rf build",
+        "clean:all": "rd /s /q build node_modules || rm -rf build node_modules"
     },
     "repository": {
         "type": "git",
