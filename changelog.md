@@ -1,19 +1,3 @@
-# ⚠️⚠️⚠️⚠️⚠️
-
-## Ce projet est à l'arrêt. Bien qu'avancé à un stade quasi fini, il pourrait être amélioré mais je me concentre sur d'autre projet. Il est cependant fonctionnel.
-
-# ⚠️⚠️⚠️⚠️⚠️
-
-# Portfolio - Le back
-
-Bonjour, bienvenue sur le côté serveur de mon portfolio. Contrairement au front ou chaque projet est séparé et héberger sur un sous-domaine différent, le serveur contient chaque réponse, route, requêtes et requêtes SQL de chaque projet.
-Il s'agit ici du back avec ci-dessous l'historique des version et leur détails.
-
-Voici [le serveur](https://server.alexandre-richard.fr/) en question
-Et [son répo](https://github.com/Alexandre-RICHARD/Portfolio-Back)
-
-
-## Historique des version
 
 ### Version 0
 
@@ -334,5 +318,27 @@ Et [son répo](https://github.com/Alexandre-RICHARD/Portfolio-Back)
 ### 2.0.11 `7 octobre 2023`
 
 -   Mise à jour des packages npm
+
+</details>
+
+### Version 3
+
+<details>
+
+### 3.0.0 `15 février 2024`
+
+-   Keep only the mail and visits logic from old project, rest will be on other server
+-   Add CORS origin handle
+-   Add errorServer handle to catch and save all error wich will be catch during try catch
+-   Add .env.exemple file and some comments to more understanding
+-   Update dependencies
+-   Some correction with double space, line end etc.
+-   Change on gitignore file
+-   Remake build, update and clean script on package.json
+-   Change message when route not handle by server
+-   Add the request test file (.http) to the back
+-   Add prettier and Eslint to project to match new TypeScript implement
+-   Transformation of all old js file to ts file
+-   Add environnement.d.ts to have type on env variable
 
 </details>

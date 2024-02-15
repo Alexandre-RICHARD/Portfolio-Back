@@ -15,7 +15,7 @@ const transporter = createTransport({
     },
 });
 
-const portfolioController = {
+export const portfolioController = {
     "contactSendMail": async (req: Request, res: Response) => {
         const mailData = {
             "userName": req.body.contactFormName,
@@ -64,5 +64,3 @@ const portfolioController = {
         }
     },
 };
-
-export default portfolioController;

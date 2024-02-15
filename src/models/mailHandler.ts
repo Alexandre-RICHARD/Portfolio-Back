@@ -1,22 +1,16 @@
-import {dbRequestExecuter as db} from "./../database";
+import {dbRequestExecuter as db} from "../database";
 
 export const mailHandler = {
-    "getAllWorkTimeData": async () => {
-        const request = "SELECT * FROM user_data";
-
-        const results = await db(request);
-        return results;
-    },
     "saveOneMessage": async ({
         userName,
         mail,
         subject,
         message,
     }: {
-        userName: string;
-        mail: string;
-        subject: string;
-        message: string;
+        "userName": string;
+        "mail": string;
+        "subject": string;
+        "message": string;
     }) => {
         const request = `
         INSERT INTO 
