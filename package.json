@@ -1,33 +1,45 @@
 {
     "name": "portfolio-back",
     "version": "2.0.10",
-    "description": "Portfolio d'Alexandre Richard. Projet à but auto-formatif.",
-    "main": "index.js",
-    "scripts": {
-        "start": "nodemon",
-        "build": "rd /s /q build & mkdir build build\\app & xcopy /y .\\index.js .\\build & xcopy /y .\\package.json .\\build & xcopy /y /s /q .\\app .\\build\\app",
-        "update": "pnpm update || yarn upgrade || npm update",
-        "lint": "eslint ./*.js",
-        "lint:fix": "eslint --fix ./*.js",
-        "clean": "rd /s /q build 2> nul || rm -rf build",
-        "clean:all": "rd /s /q build node_modules 2> nul || rm -rf build node_modules"
-    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Alexandre-RICHARD/Portfolio-Back.git"
     },
-    "license": "ISC",
-    "devDependencies": {
-        "eslint": "^8.56.0"
+    "scripts": {
+        "start": "nodemon ./index.ts",
+        "test": "vitest",
+        "update": "pnpm update || yarn upgrade || npm update",
+        "prettier": "prettier --write src/**/*.{js,jsx,ts,tsx,css,scss,json}",
+        "lint": "eslint src/**/*.ts --report-unused-disable-directives && echo '\u001b[32mESLint n'a trouvé aucune erreur\u001b[0m'",
+        "lint & fix": "eslint src/**/*.ts --fix --report-unused-disable-directives && echo '\u001b[32mESLint n'a trouvé aucune erreur\u001b[0m'",
+        "build": "ncc build index.ts -m -o build",
+        "build-run": "node build/index.js",
+        "clean": "rd /s /q build || rm -rf build",
+        "clean:all": "rd /s /q build node_modules || rm -rf build node_modules"
     },
-    "dependencies": {
+    "devDependencies": {
+        "@stylistic/eslint-plugin": "^1.6.1",
+        "@types/cors": "^2.8.17",
+        "@types/express": "^4.17.21",
+        "@types/node": "^20.11.17",
+        "@types/nodemailer": "^6.4.14",
+        "@typescript-eslint/eslint-plugin": "^6.21.0",
+        "@typescript-eslint/parser": "^6.21.0",
+        "@vercel/ncc": "^0.38.1",
         "bcryptjs": "^2.4.3",
         "cors": "^2.8.5",
-        "dotenv": "^16.3.1",
+        "dotenv": "^16.4.4",
+        "eslint": "^8.56.0",
+        "eslint-config-prettier": "^9.1.0",
         "express": "^4.18.2",
-        "nodemailer": "^6.9.8",
-        "pg": "^8.11.3",
+        "mariadb": "^3.2.3",
+        "nodemailer": "^6.9.9",
+        "nodemon": "^3.0.3",
+        "prettier": "^3.2.5",
         "socket.io": "^4.7.4",
-        "uuid": "^9.0.1"
+        "ts-node": "^10.9.2",
+        "typescript": "^5.3.3",
+        "uuid": "^9.0.1",
+        "vitest": "^0.34.6"
     }
 }
