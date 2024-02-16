@@ -1,5 +1,4 @@
-
-### Version 0
+# Version 0
 
 <details>
 
@@ -198,7 +197,7 @@
 
 </details>
 
-### Version 1
+# Version 1
 
 <details>
 
@@ -236,7 +235,7 @@
 
 </details>
 
-### Version 2
+# Version 2
 
 <details>
 
@@ -321,7 +320,7 @@
 
 </details>
 
-### Version 3
+# Version 3
 
 <details>
 
@@ -340,5 +339,11 @@
 -   Add prettier and Eslint to project to match new TypeScript implement
 -   Transformation of all old js file to ts file
 -   Add environnement.d.ts to have type on env variable
+
+### 3.0.1 `16 février 2024`
+
+-   Change Eslint rule about no-extra-parens, allow it for conditional verification
+-   Update dependencies
+-   Little change on the configuration of node-mailer to fix it
 
 </details>

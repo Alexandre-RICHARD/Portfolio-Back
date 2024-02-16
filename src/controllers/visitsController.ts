@@ -18,14 +18,10 @@ export const visitsController = {
                 // if not, create it
                 await visitCounter.newDayVisits(target, today);
             }
-
         } catch (error) {
             res.status(500).json({"message": "database-error"});
             const errorF = error as Error;
-            await errorSaver(
-                "handle-visit-data",
-                JSON.stringify(errorF.stack)
-            );
+            await errorSaver("handle-visit-data", JSON.stringify(errorF.stack));
         }
         res.status(200).json({"message": "Visit register success"});
     },

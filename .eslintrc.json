@@ -75,7 +75,11 @@
             "error",
             {"allowParens": true, "onlyOneSimpleParam": false}
         ],
-        "@stylistic/no-extra-parens": "error",
+        "@stylistic/no-extra-parens": [
+            "error",
+            "all",
+            {"nestedBinaryExpressions": false}
+        ],
         "@stylistic/no-extra-semi": "error",
         "@stylistic/no-floating-decimal": "error",
         "@stylistic/no-mixed-operators": [

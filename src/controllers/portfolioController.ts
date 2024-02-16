@@ -5,7 +5,7 @@ import {errorSaver} from "../utilities/errorSaver";
 import {mailHandler} from "../models/mailHandler";
 
 const transporter = createTransport({
-    "name": "smtp-mail.outlook.com",
+    "host": "smtp-mail.outlook.com",
     "secure": false,
     "port": 587,
     "tls": {"ciphers": "SSLv3"},
@@ -38,21 +38,17 @@ export const portfolioController = {
             `,
         };
 
-
         try {
             await mailHandler.saveOneMessage(mailData);
             transporter.sendMail(mailOptions, (error, info) => {
                 if (error) {
                     const errorF = error as Error;
                     errorSaver(
-                        "save-contact-mail-fail",
+                        "mail-sending-failed",
                         JSON.stringify(errorF.stack)
                     );
                 }
-                res.status(200).json(
-                    {"message": "Mail envoyé", "info": info}
-                );
-
+                res.status(200).json({"message": "Mail sent", "info": info});
             });
         } catch (error) {
             res.status(500).json({"message": "database-error"});
