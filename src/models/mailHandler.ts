@@ -12,17 +12,21 @@ export const mailHandler = {
         "subject": string;
         "message": string;
     }) => {
+        const currentDateTime = new Date().toISOString();
+
         const request = `
         INSERT INTO 
             contact_message 
                 (
-                    user_name,
-                    user_mail,
-                    user_object,
-                    user_message
+                    message_date,
+                    message_name,
+                    message_mail,
+                    message_object,
+                    message
                 )
                 VALUES
                 (
+                    ?,
                     ?,
                     ?,
                     ?,
@@ -30,6 +34,7 @@ export const mailHandler = {
                 );
         `;
         const parameters = [
+            currentDateTime,
             userName,
             mail,
             subject,

@@ -346,4 +346,8 @@
 -   Update dependencies
 -   Little change on the configuration of node-mailer to fix it
 
+### 3.0.2 `17 février 2024`
+
+-   Change the Insert Into for contact_message to adapt new name, and add time and date to them
+
 </details>
